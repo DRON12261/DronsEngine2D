@@ -1,0 +1,9 @@
+UI
+            ||-------------------------------------------------------Object---------------------------------------------------------------------------||
+            \/                                                         \/                                                                             \/
+         UILayer                                                     Entity                                                               Level, Command(Console), Room
+            \/                                                         \/                                                                   And many other things
+           Grid                                               Player, Enemy, Item, ..
+            \/
+  Button, TextBox, ComboBox, 
+CheckBox, Image, Border, Label
