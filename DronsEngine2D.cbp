@@ -8,78 +8,52 @@
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/DronsEngine2D" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/Debug" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-std=c++11" />
 					<Add option="-g" />
-					<Add directory="Source" />
 				</Compiler>
 				<Linker>
-					<Add option="-static-libstdc++" />
-					<Add option="-static-libgcc" />
-					<Add option="-static" />
-					<Add library="sfml-graphics-d" />
+					<Add library="sfml-system-d" />
 					<Add library="sfml-window-d" />
+					<Add library="sfml-graphics-d" />
 					<Add library="sfml-audio-d" />
 					<Add library="sfml-network-d" />
-					<Add library="sfml-system-d" />
 				</Linker>
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/DronsEngine2D" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="bin/Release" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
-					<Add option="-std=c++11" />
-					<Add directory="Source" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add option="-static-libstdc++" />
-					<Add option="-static-libgcc" />
-					<Add option="-static" />
-					<Add library="sfml-graphics" />
+					<Add library="sfml-system" />
 					<Add library="sfml-window" />
+					<Add library="sfml-graphics" />
 					<Add library="sfml-audio" />
 					<Add library="sfml-network" />
-					<Add library="sfml-system" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add directory="../SFML-2.5.1/include" />
+			<Add option="-std=c++17" />
+			<Add directory="F:/C++ Compillers/MinGW x32 7.3.0 i686 release posix dwarf rt v5 rev0/SFML-2.5.1/include" />
 		</Compiler>
 		<Linker>
-			<Add directory="../SFML-2.5.1/lib" />
+			<Add option="-static-libstdc++" />
+			<Add option="-static-libgcc" />
+			<Add option="-static" />
+			<Add directory="F:/C++ Compillers/MinGW x32 7.3.0 i686 release posix dwarf rt v5 rev0/SFML-2.5.1/lib" />
 		</Linker>
-		<Unit filename="Source/Components/AnimationComponent.cpp" />
-		<Unit filename="Source/Components/AnimationComponent.h" />
-		<Unit filename="Source/Components/MovementComponent.cpp" />
-		<Unit filename="Source/Components/MovementComponent.h" />
-		<Unit filename="Source/Entities/Entity.cpp" />
-		<Unit filename="Source/Entities/Entity.h" />
-		<Unit filename="Source/Entities/Player.cpp" />
-		<Unit filename="Source/Entities/Player.h" />
-		<Unit filename="Source/Game.cpp" />
-		<Unit filename="Source/Game.h" />
-		<Unit filename="Source/States/GameState.cpp" />
-		<Unit filename="Source/States/GameState.h" />
-		<Unit filename="Source/States/MainMenuState.cpp" />
-		<Unit filename="Source/States/MainMenuState.h" />
-		<Unit filename="Source/States/State.cpp" />
-		<Unit filename="Source/States/State.h" />
-		<Unit filename="Source/UI/Button.cpp" />
-		<Unit filename="Source/UI/Button.h" />
-		<Unit filename="Source/UI/FPSCounter.cpp" />
-		<Unit filename="Source/UI/FPSCounter.h" />
-		<Unit filename="Source/main.cpp" />
-		<Extensions />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>
