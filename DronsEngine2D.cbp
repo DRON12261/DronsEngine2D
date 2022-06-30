@@ -8,11 +8,15 @@
 		<Build>
 			<Target title="Debug">
 				<Option output="bin/Debug/DronsEngine2D" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Debug" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="Source" />
+					<Add directory="Source/UIElements" />
+					<Add directory="Source/Utilities" />
 				</Compiler>
 				<Linker>
 					<Add library="sfml-system-d" />
@@ -24,11 +28,15 @@
 			</Target>
 			<Target title="Release">
 				<Option output="bin/Release/DronsEngine2D" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin/Release" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="Source" />
+					<Add directory="Source/UIElements" />
+					<Add directory="Source/Utilities" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -51,8 +59,27 @@
 			<Add option="-static" />
 			<Add directory="F:/C++ Compillers/MinGW x32 7.3.0 i686 release posix dwarf rt v5 rev0/SFML-2.5.1/lib" />
 		</Linker>
-		<Unit filename="main.cpp" />
+		<Unit filename="Source/Game.cpp" />
+		<Unit filename="Source/Game.h" />
+		<Unit filename="Source/Math/Math.cpp" />
+		<Unit filename="Source/Math/Math.h" />
+		<Unit filename="Source/Object.cpp" />
+		<Unit filename="Source/Object.h" />
+		<Unit filename="Source/Utilities/INIFile.cpp" />
+		<Unit filename="Source/Utilities/INIFile.h" />
+		<Unit filename="Source/Utilities/StringUtilities.cpp" />
+		<Unit filename="Source/Utilities/StringUtilities.h" />
+		<Unit filename="Source/main.cpp" />
 		<Extensions>
+			<DoxyBlocks>
+				<comment_style block="4" line="0" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
 			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>

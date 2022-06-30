@@ -617,3 +617,138 @@
 1635861251 source:f:\projects\codeblocks projects\dronsengine2d\math.cpp
 	"Math.h"
 
+1656580866 source:f:\projects\codeblocks projects\dronsengine2d\source\game.cpp
+	"Game.h"
+
+1656534920 f:\projects\codeblocks projects\dronsengine2d\source\game.h
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Network.hpp>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<iostream>
+	<string>
+	<cmath>
+	"Math/Math.h"
+
+1656526373 f:\projects\codeblocks projects\dronsengine2d\source\math\math.h
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Network.hpp>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<iostream>
+	<string>
+	<cmath>
+
+1656536278 source:f:\projects\codeblocks projects\dronsengine2d\source\main.cpp
+	"Game.h"
+
+1635861251 source:f:\projects\codeblocks projects\dronsengine2d\source\math\math.cpp
+	"Math.h"
+
+1656581109 source:f:\projects\codeblocks projects\dronsengine2d\source\object.cpp
+	"Object.h"
+
+1656581111 f:\projects\codeblocks projects\dronsengine2d\source\object.h
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Network.hpp>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+
+1656531468 f:\projects\codeblocks projects\dronsengine2d\source\uielements\uilayer.h
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Network.hpp>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<vector>
+	"Object.h"
+
+1656529980 source:f:\projects\codeblocks projects\dronsengine2d\source\uielements\uilayer.cpp
+	"UILayer.h"
+
+1656530593 f:\projects\codeblocks projects\dronsengine2d\source\uielements\grid.h
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Network.hpp>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<UILayer.h>
+
+1656530572 source:f:\projects\codeblocks projects\dronsengine2d\source\uielements\grid.cpp
+	"Grid.h"
+
+1656627523 source:f:\projects\codeblocks_projects\dronsengine2d\source\game.cpp
+	"Game.h"
+
+1656625066 f:\projects\codeblocks_projects\dronsengine2d\source\game.h
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Network.hpp>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<iostream>
+	<string>
+	<cmath>
+	"Math/Math.h"
+	"Utilities/INIFile.h"
+
+1656604930 f:\projects\codeblocks_projects\dronsengine2d\source\math\math.h
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Network.hpp>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+	<iostream>
+	<string>
+	<cmath>
+
+1656619438 source:f:\projects\codeblocks_projects\dronsengine2d\source\main.cpp
+	"Game.h"
+
+1656604930 source:f:\projects\codeblocks_projects\dronsengine2d\source\math\math.cpp
+	"Math.h"
+
+1656604379 source:f:\projects\codeblocks_projects\dronsengine2d\source\object.cpp
+	"Object.h"
+
+1656604930 f:\projects\codeblocks_projects\dronsengine2d\source\object.h
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<SFML/Network.hpp>
+	<SFML/System.hpp>
+	<SFML/Window.hpp>
+
+1656604903 f:\projects\codeblocks_projects\dronsengine2d\source\utilities\iniparser.h
+	<string>
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<map>
+	"StringUtilities.h"
+
+1656620581 source:f:\projects\codeblocks_projects\dronsengine2d\source\utilities\iniparser.cpp
+	"INIParser.h"
+
+1656604379 source:f:\projects\codeblocks_projects\dronsengine2d\source\utilities\stringutilities.cpp
+	"StringUtilities.h"
+
+1656604930 f:\projects\codeblocks_projects\dronsengine2d\source\utilities\stringutilities.h
+	<algorithm>
+	<cctype>
+	<locale>
+
+1656627882 f:\projects\codeblocks_projects\dronsengine2d\source\utilities\inifile.h
+	<string>
+	<iostream>
+	<fstream>
+	<cstdlib>
+	<map>
+	<stdio.h>
+	"StringUtilities.h"
+
+1656627702 source:f:\projects\codeblocks_projects\dronsengine2d\source\utilities\inifile.cpp
+	"INIFile.h"
+
