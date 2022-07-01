@@ -59,6 +59,8 @@
 			<Add option="-static" />
 			<Add directory="F:/C++ Compillers/MinGW x32 7.3.0 i686 release posix dwarf rt v5 rev0/SFML-2.5.1/lib" />
 		</Linker>
+		<Unit filename="LoremIpsum.txt" />
+		<Unit filename="README.md" />
 		<Unit filename="Source/Game.cpp" />
 		<Unit filename="Source/Game.h" />
 		<Unit filename="Source/Math/Math.cpp" />

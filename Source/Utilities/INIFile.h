@@ -42,7 +42,9 @@ class INIFile {
   private:
     std::string currentFilePath;
 	std::ifstream currentFile;
-	std::map<std::string, std::map<std::string, std::string>> data;
+	using iniSection_t = std::map<std::string, std::string>;
+	using iniData_t = std::map<std::string, iniSection_t>;
+	iniData_t data;
 	bool isOpened;
 };
 }

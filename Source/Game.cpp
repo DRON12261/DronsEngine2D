@@ -2,32 +2,32 @@
 
 DronsEngine::Game::Game(std::string gameTitle) {
 	this->gameTitle = gameTitle;
-	this->gameWindow = new sf::RenderWindow();
+	gameWindow = new sf::RenderWindow();
 }
 
 int DronsEngine::Game::run() {
-	this->init();
+	init();
 
-	while (this->gameWindow->isOpen()) {
+	while (gameWindow->isOpen()) {
         //  Calculating frametime
-		this->elapsedTime = this->gameTime->restart();
-		this->idleLag += this->elapsedTime;
-		this->physicsLag += this->elapsedTime;
+		elapsedTime = gameTime->restart();
+		idleLag += elapsedTime;
+		physicsLag += elapsedTime;
 
 		//  Handling events
-		this->handleEvents();
+		handleEvents();
 
 		//  Physics loop
-		if (this->physicsLag > this->msPerPhysicsFrame) {
-			this->physicsUpdate(this->physicsLag);
-			this->physicsLag -= this->msPerPhysicsFrame;
+		if (physicsLag > msPerPhysicsFrame) {
+			physicsUpdate(physicsLag);
+			physicsLag -= msPerPhysicsFrame;
 		}
 
 		// Idle and render loop
-		if (this->idleLag > this->msPerIdleFrame) {
-			this->update(this->idleLag);
-			this->render(this->idleLag);
-			this->idleLag -= this->msPerIdleFrame;
+		if (idleLag > msPerIdleFrame) {
+			update(idleLag);
+			render(idleLag);
+			idleLag -= msPerIdleFrame;
 		}
 	}
 
@@ -40,53 +40,53 @@ int DronsEngine::Game::init() {
 
     //  Load settings
     std::string readedString = INIreader.read("Video", "Width");
-	this->gameWindowWidth = readedString != "" ? std::stoi(readedString) : sf::VideoMode::getDesktopMode().width;
+	gameWindowWidth = readedString != "" ? std::stoi(readedString) : sf::VideoMode::getDesktopMode().width;
 	readedString = INIreader.read("Video", "Height");
-	this->gameWindowHeight = readedString != "" ? std::stoi(readedString) : sf::VideoMode::getDesktopMode().height;
+	gameWindowHeight = readedString != "" ? std::stoi(readedString) : sf::VideoMode::getDesktopMode().height;
 	readedString = INIreader.read("Video", "FPSCap");
-	this->FPSCap = readedString != "" ? std::stoi(readedString) : 60;
+	FPSCap = readedString != "" ? std::stoi(readedString) : 60;
 	readedString = INIreader.read("Other", "PhysicsFPSCap");
-	this->PhysicsFPSCap = readedString != "" ? std::stoi(readedString) : 30;
+	PhysicsFPSCap = readedString != "" ? std::stoi(readedString) : 30;
 	readedString = INIreader.read("Video", "Mode");
 	switch (std::stoi(readedString)) {
     case 0:
-        this->gameWindowMode = sf::Style::Titlebar | sf::Style::Close;
+        gameWindowMode = sf::Style::Titlebar | sf::Style::Close;
         break;
     case 1:
-        this->gameWindowMode = sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize;
+        gameWindowMode = sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize;
         break;
     case 2:
-        this->gameWindowMode = sf::Style::Fullscreen;
+        gameWindowMode = sf::Style::Fullscreen;
         break;
     case 3:
-        this->gameWindowMode = sf::Style::None;
+        gameWindowMode = sf::Style::None;
         break;
 	}
 	INIreader.closeINI();
 
 	//  Prepare main view
-	sf::View gameView(sf::Vector2f(this->gameWindowWidth / 2, this->gameWindowHeight / 2), sf::Vector2f(this->gameViewWidth, this->gameViewHeight));
-	gameView.zoom(1 / (this->gameWindowWidth / (float)this->gameViewWidth));
+	sf::View gameView(sf::Vector2f(gameWindowWidth / 2, gameWindowHeight / 2), sf::Vector2f(gameViewWidth, gameViewHeight));
+	gameView.zoom(1 / (gameWindowWidth / (float)gameViewWidth));
 
 	//  Initialization other parameters
-	this->gameTime = new sf::Clock();
-	this->elapsedTime = sf::Time::Zero;
-	this->idleLag = sf::Time::Zero;
-	this->physicsLag = sf::Time::Zero;
-	this->msPerIdleFrame = sf::seconds(1.0f / FPSCap);
-	this->msPerPhysicsFrame = sf::seconds(1.0f / PhysicsFPSCap);
-	delete this->gameWindow;
-	this->gameWindow = new sf::RenderWindow(sf::VideoMode(this->gameWindowWidth, this->gameWindowHeight), this->gameTitle, this->gameWindowMode, sf::ContextSettings(0, 0, 1));
-	this->gameWindow->setView(gameView);
+	gameTime = new sf::Clock();
+	elapsedTime = sf::Time::Zero;
+	idleLag = sf::Time::Zero;
+	physicsLag = sf::Time::Zero;
+	msPerIdleFrame = sf::seconds(1.0f / FPSCap);
+	msPerPhysicsFrame = sf::seconds(1.0f / PhysicsFPSCap);
+	delete gameWindow;
+	gameWindow = new sf::RenderWindow(sf::VideoMode(gameWindowWidth, gameWindowHeight), gameTitle, gameWindowMode, sf::ContextSettings(0, 0, 1));
+	gameWindow->setView(gameView);
 
 	//  Initialization test objects
-	this->shape = new sf::CircleShape(50.f);
-	this->shape->setFillColor(sf::Color::Green);
-	this->shape->setOrigin(this->shape->getRadius(), this->shape->getRadius());
-	this->shape->setPosition(this->gameWindow->getSize().x / 2, this->gameWindow->getSize().y / 2);
-	this->mouseShape = new sf::CircleShape(20.f);
-	this->mouseShape->setFillColor(sf::Color::Yellow);
-	this->mouseShape->setOrigin(this->mouseShape->getRadius(), this->mouseShape->getRadius());
+	shape = new sf::CircleShape(50.f);
+	shape->setFillColor(sf::Color::Green);
+	shape->setOrigin(shape->getRadius(), shape->getRadius());
+	shape->setPosition(gameWindow->getSize().x / 2, gameWindow->getSize().y / 2);
+	mouseShape = new sf::CircleShape(20.f);
+	mouseShape->setFillColor(sf::Color::Yellow);
+	mouseShape->setOrigin(mouseShape->getRadius(), mouseShape->getRadius());
 
 	return 0;
 }
@@ -94,16 +94,16 @@ int DronsEngine::Game::init() {
 int DronsEngine::Game::handleEvents() {
 	sf::Event event;
 
-	while (this->gameWindow->pollEvent(event)) {
+	while (gameWindow->pollEvent(event)) {
         //  Exiting game
 		if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-			this->gameWindow->close();
+			gameWindow->close();
 
         // Resizing game window
 		if (event.type == sf::Event::Resized) {
-			sf::View gameView(sf::Vector2f(this->gameWindowWidth / 2, this->gameWindowHeight / 2), sf::Vector2f(this->gameViewWidth, this->gameViewHeight));
-			gameView.zoom(1 / (this->gameWindow->getSize().x / (float)this->gameViewWidth));
-			this->gameWindow->setView(gameView);
+			sf::View gameView(sf::Vector2f(gameWindowWidth / 2, gameWindowHeight / 2), sf::Vector2f(gameViewWidth, gameViewHeight));
+			gameView.zoom(1 / (gameWindow->getSize().x / (float)gameViewWidth));
+			gameWindow->setView(gameView);
 		}
 	}
 
@@ -112,21 +112,21 @@ int DronsEngine::Game::handleEvents() {
 
 int DronsEngine::Game::physicsUpdate(sf::Time deltaTime) {
     // Getting mouse position
-	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*this->gameWindow);
-	sf::Vector2f viewMousePos = this->gameWindow->mapPixelToCoords(pixelMousePos);
+	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*gameWindow);
+	sf::Vector2f viewMousePos = gameWindow->mapPixelToCoords(pixelMousePos);
 
-	if (DronsEngine::circlesCollide(*this->shape, *this->mouseShape)) {
-		if (DronsEngine::circleAndPointCollide(viewMousePos, *this->shape)) {
-			this->shape->setFillColor(sf::Color::White);
-			this->mouseShape->setFillColor(sf::Color::Black);
+	if (DronsEngine::circlesCollide(*shape, *mouseShape)) {
+		if (DronsEngine::circleAndPointCollide(viewMousePos, *shape)) {
+			shape->setFillColor(sf::Color::White);
+			mouseShape->setFillColor(sf::Color::Black);
 		} else {
-			this->shape->setFillColor(sf::Color::Red);
-			this->mouseShape->setFillColor(sf::Color::Magenta);
+			shape->setFillColor(sf::Color::Red);
+			mouseShape->setFillColor(sf::Color::Magenta);
 
 		}
 	} else {
-		this->shape->setFillColor(sf::Color::Green);
-		this->mouseShape->setFillColor(sf::Color::Yellow);
+		shape->setFillColor(sf::Color::Green);
+		mouseShape->setFillColor(sf::Color::Yellow);
 	}
 
 	return 0;
@@ -134,21 +134,21 @@ int DronsEngine::Game::physicsUpdate(sf::Time deltaTime) {
 
 int DronsEngine::Game::update(sf::Time deltaTime) {
     // Getting mouse position
-	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*this->gameWindow);
-	sf::Vector2f viewMousePos = this->gameWindow->mapPixelToCoords(pixelMousePos);
+	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*gameWindow);
+	sf::Vector2f viewMousePos = gameWindow->mapPixelToCoords(pixelMousePos);
 
-	this->mouseShape->setPosition(viewMousePos);
+	mouseShape->setPosition(viewMousePos);
 
 	return 0;
 }
 
 int DronsEngine::Game::render(sf::Time deltaTime) {
-	this->gameWindow->clear();
+	gameWindow->clear();
 
-	this->gameWindow->draw(*this->shape);
-	this->gameWindow->draw(*this->mouseShape);
+	gameWindow->draw(*shape);
+	gameWindow->draw(*mouseShape);
 
-	this->gameWindow->display();
+	gameWindow->display();
 
 	return 0;
 }

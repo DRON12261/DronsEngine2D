@@ -1,14 +1,14 @@
 #include "INIFile.h"
 
 DronsEngine::INIFile::INIFile() {
-    this->isOpened = false;
-    this->currentFilePath = "";
+    isOpened = false;
+    currentFilePath = "";
 }
 
 DronsEngine::INIFile::INIFile(std::string path) {
-    this->isOpened = false;
-    this->currentFilePath = "";
-    this->openINI(path);
+    isOpened = false;
+    currentFilePath = "";
+    openINI(path);
 }
 
 DronsEngine::INIFile::~INIFile() {
@@ -16,14 +16,14 @@ DronsEngine::INIFile::~INIFile() {
 }
 
 void DronsEngine::INIFile::createINI(std::string path) {
-    if (this->isOpened) {
+    if (isOpened) {
         std::cerr << "INI file is already open!" << std::endl;
 		exit(1);
     }
 
-    this->currentFile.open(path);
-    if (this->currentFile.is_open()) {
-        this->currentFile.close();
+    currentFile.open(path);
+    if (currentFile.is_open()) {
+        currentFile.close();
         std::cerr << "INI file is already exist!" << std::endl;
         exit(1);
     }
@@ -32,43 +32,43 @@ void DronsEngine::INIFile::createINI(std::string path) {
     newINIFile.open(path, std::ofstream::out | std::ofstream::trunc);
     newINIFile.close();
 
-    this->currentFile.open(path);
+    currentFile.open(path);
 
-	if (!this->currentFile.is_open()) {
+	if (!currentFile.is_open()) {
 		std::cerr << "Failed to open INI file!" << std::endl;
 		exit(1);
 	}
 
-	this->isOpened = true;
-	this->currentFilePath = path;
+	isOpened = true;
+	currentFilePath = path;
 }
 
 void DronsEngine::INIFile::openINI(std::string path) {
-    if (this->isOpened) {
+    if (isOpened) {
         std::cerr << "INI file is already open!" << std::endl;
 		exit(1);
     }
 
-	this->currentFile.open(path);
+	currentFile.open(path);
 
-	if (!this->currentFile.is_open()) {
+	if (!currentFile.is_open()) {
 		std::cerr << "Failed to open INI file!" << std::endl;
 		exit(1);
 	}
 
-	this->isOpened = true;
-	this->currentFilePath = path;
+	isOpened = true;
+	currentFilePath = path;
 
 	std::string currentSection = "";
 
-	while(this->currentFile) {
+	while(currentFile) {
 		std::string currentLine;
-		std::getline(this->currentFile, currentLine);
+		std::getline(currentFile, currentLine);
 		DronsEngine::trim(currentLine);
 
 		if (currentLine[0] == '[' && currentLine[currentLine.length() - 1] == ']' && currentLine.length() > 2) {
 			currentSection = currentLine.substr(1, currentLine.length() - 2);
-			this->data.insert(std::make_pair(currentSection, std::map<std::string, std::string>()));
+			data.insert(std::make_pair(currentSection, iniSection_t()));
 		} else if (currentLine[0] != ';' && currentLine[0] != '[' && currentLine != "") {
 			std::string currentName = "";
 			int currentNameStart = -1;
@@ -104,23 +104,23 @@ void DronsEngine::INIFile::openINI(std::string path) {
 				exit(1);
 			}
 
-			this->data[currentSection].insert(std::make_pair(currentName, currentValue));
+			data[currentSection].insert(std::make_pair(currentName, currentValue));
 		}
 	}
 }
 
 void DronsEngine::INIFile::saveINI() {
-    this->currentFile.close();
+    currentFile.close();
 
     std::ofstream INIFileToWrite;
-    INIFileToWrite.open(this->currentFilePath, std::ofstream::out | std::ofstream::trunc);
+    INIFileToWrite.open(currentFilePath, std::ofstream::out | std::ofstream::trunc);
 
-    std::map<std::string, std::map<std::string, std::string>>::iterator it;
-    for(it = this->data.begin(); it != this->data.end(); it++) {
+    iniData_t::iterator it;
+    for(it = data.begin(); it != data.end(); it++) {
         INIFileToWrite << "[" << it->first << "]" << std::endl;
 
-        std::map<std::string, std::string>::iterator itIn;
-        for(itIn = this->data[it->first].begin(); itIn != this->data[it->first].end(); itIn++) {
+        iniSection_t::iterator itIn;
+        for(itIn = data[it->first].begin(); itIn != data[it->first].end(); itIn++) {
             INIFileToWrite << itIn->first << " = " << itIn->second << std::endl;
         }
 
@@ -129,99 +129,99 @@ void DronsEngine::INIFile::saveINI() {
 
     INIFileToWrite.close();
 
-    this->currentFile.open(this->currentFilePath);
+    currentFile.open(currentFilePath);
 }
 
 void DronsEngine::INIFile::closeINI() {
-    if (!this->isOpened) {
+    if (!isOpened) {
         std::cerr << "The INI file has not been opened yet!" << std::endl;
 		exit(1);
     }
 
-    this->isOpened = false;
-    this->currentFilePath = "";
-    this->currentFile.close();
-    this->data.clear();
+    isOpened = false;
+    currentFilePath = "";
+    currentFile.close();
+    data.clear();
 }
 
 void DronsEngine::INIFile::addSection(std::string section) {
-    if (!this->isOpened) {
+    if (!isOpened) {
         std::cerr << "The INI file has not been opened yet!" << std::endl;
 		exit(1);
     }
 
-    if (this->data.find(section) != this->data.end()) {
+    if (data.find(section) != data.end()) {
         std::cerr << "Such a section is already in the INI file!" << std::endl;
 		exit(1);
     }
 
-    this->data.insert(std::make_pair(section, std::map<std::string, std::string>()));
+    data.insert(std::make_pair(section, std::map<std::string, std::string>()));
 }
 
 void DronsEngine::INIFile::deleteSection(std::string section) {
-    if (!this->isOpened) {
+    if (!isOpened) {
         std::cerr << "The INI file has not been opened yet!" << std::endl;
 		exit(1);
     }
 
-    if (this->data.find(section) == this->data.end()) {
+    if (data.find(section) == data.end()) {
         std::cerr << "There is no such section in the INI file!" << std::endl;
 		exit(1);
     }
 
-    std::map<std::string, std::map<std::string, std::string>>::iterator it = this->data.find(section);
-    this->data.erase(it);
+    iniData_t::iterator it = data.find(section);
+    data.erase(it);
 }
 
 void DronsEngine::INIFile::write(std::string section, std::string name, std::string value) {
-    if (!this->isOpened) {
+    if (!isOpened) {
         std::cerr << "The INI file has not been opened yet!" << std::endl;
 		exit(1);
     }
 
-    if (this->data.find(section) == this->data.end()) {
+    if (data.find(section) == data.end()) {
         std::cerr << "There is no such section in the INI file!" << std::endl;
 		exit(1);
     }
 
-    if (this->data[section].find(name) != this->data[section].end()) {
-        std::map<std::string, std::string>::iterator it = this->data[section].find(name);
+    if (data[section].find(name) != data[section].end()) {
+        iniSection_t::iterator it = data[section].find(name);
         it->second = value;
     }
     else
     {
-        this->data[section].insert(std::make_pair(name, value));
+        data[section].insert(std::make_pair(name, value));
     }
 }
 
 void DronsEngine::INIFile::erase(std::string section, std::string name) {
-    if (!this->isOpened) {
+    if (!isOpened) {
         std::cerr << "The INI file has not been opened yet!" << std::endl;
 		exit(1);
     }
 
-    if (this->data.find(section) == this->data.end()) {
+    if (data.find(section) == data.end()) {
         std::cerr << "There is no such section in the INI file!" << std::endl;
 		exit(1);
     }
 
-    if (this->data[section].find(name) == this->data[section].end()) {
+    if (data[section].find(name) == data[section].end()) {
         std::cerr << "There is no such entry in the current section of the INI file!" << std::endl;
 		exit(1);
     }
 
-    std::map<std::string, std::string>::iterator it = this->data[section].find(name);
-    this->data[section].erase(it);
+    iniSection_t::iterator it = data[section].find(name);
+    data[section].erase(it);
 }
 
 std::string DronsEngine::INIFile::read(std::string section, std::string name) {
-    if (!this->isOpened) {
+    if (!isOpened) {
         std::cerr << "The INI file has not been opened yet!" << std::endl;
 		exit(1);
     }
 
-	if (this->data.find(section) != this->data.end() && this->data[section].find(name) != this->data[section].end())
-	    return this->data[section][name];
+	if (data.find(section) != data.end() && data[section].find(name) != data[section].end())
+	    return data[section][name];
 	else
 	    return "";
 }
