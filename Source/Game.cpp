@@ -36,7 +36,7 @@ int DronsEngine::Game::run() {
 
 int DronsEngine::Game::init() {
 	//  Open settings.ini
-	DronsEngine::INIFile INIreader("settings.ini");
+	DronsEngine::INIFile INIreader("Configs/Settings.ini");
 
 	//  Load settings
 	std::string readedString = INIreader.read("Video", "Width");
