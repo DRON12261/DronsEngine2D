@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32505.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DronsEngine2D", "DronsEngine2D.vcxproj", "{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug Dynamic|x64 = Debug Dynamic|x64
+		Debug Dynamic|x86 = Debug Dynamic|x86
+		Debug Static|x64 = Debug Static|x64
+		Debug Static|x86 = Debug Static|x86
+		Release Dynamic|x64 = Release Dynamic|x64
+		Release Dynamic|x86 = Release Dynamic|x86
+		Release Static|x64 = Release Static|x64
+		Release Static|x86 = Release Static|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Debug Dynamic|x64.ActiveCfg = Debug Dynamic|x64
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Debug Dynamic|x64.Build.0 = Debug Dynamic|x64
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Debug Dynamic|x86.ActiveCfg = Debug Dynamic|Win32
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Debug Dynamic|x86.Build.0 = Debug Dynamic|Win32
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Debug Static|x64.ActiveCfg = Debug Static|x64
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Debug Static|x64.Build.0 = Debug Static|x64
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Debug Static|x86.ActiveCfg = Debug Static|Win32
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Debug Static|x86.Build.0 = Debug Static|Win32
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Release Dynamic|x64.ActiveCfg = Release Dynamic|x64
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Release Dynamic|x64.Build.0 = Release Dynamic|x64
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Release Dynamic|x86.ActiveCfg = Release Dynamic|Win32
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Release Dynamic|x86.Build.0 = Release Dynamic|Win32
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Release Static|x64.ActiveCfg = Release Static|x64
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Release Static|x64.Build.0 = Release Static|x64
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Release Static|x86.ActiveCfg = Release Static|Win32
+		{AD9F5F1E-91F2-42A0-9B7E-EACFD2144190}.Release Static|x86.Build.0 = Release Static|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBE0710C-0D93-4CEE-B03D-BAE70A30F52D}
+	EndGlobalSection
+EndGlobal

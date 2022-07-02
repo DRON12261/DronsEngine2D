@@ -8,7 +8,7 @@ float DronsEngine::distance(float x0, float y0, float x1, float y1) {
 
 int DronsEngine::circlesCollide(sf::CircleShape shape1, sf::CircleShape shape2) {
 	if (distance(shape1.getPosition().x, shape1.getPosition().y, shape2.getPosition().x, shape2.getPosition().y)
-	        < (shape1.getRadius() + shape2.getRadius())) {
+		< (shape1.getRadius() + shape2.getRadius())) {
 		return 1;
 	}
 

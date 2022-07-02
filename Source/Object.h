@@ -8,19 +8,19 @@
 #include <SFML/Window.hpp>
 
 namespace DronsEngine {
-class Object {
-  public:
-	Object();
-	virtual ~Object();
+	class Object {
+	public:
+		Object();
+		virtual ~Object();
 
-	virtual void update(sf::Time deltaTime);
-	virtual void physicsUpdate(sf::Time deltaTime);
-	virtual void render(sf::Time deltaTime);
+		virtual void update(sf::Time deltaTime);
+		virtual void physicsUpdate(sf::Time deltaTime);
+		virtual void render(sf::Time deltaTime);
 
-  protected:
+	protected:
 
-  private:
-};
+	private:
+	};
 }
 
 #endif

@@ -12,10 +12,10 @@
 #include <cmath>
 
 namespace DronsEngine {
-float distance(float x0, float y0, float x1, float y1);
-int circlesCollide(sf::CircleShape shape1, sf::CircleShape shape2);
-int circleAndPointCollide(sf::Vector2f point0, sf::CircleShape shape0);
-float lerp(float a, float b, float t);
+	float distance(float x0, float y0, float x1, float y1);
+	int circlesCollide(sf::CircleShape shape1, sf::CircleShape shape2);
+	int circleAndPointCollide(sf::Vector2f point0, sf::CircleShape shape0);
+	float lerp(float a, float b, float t);
 }
 
 #endif

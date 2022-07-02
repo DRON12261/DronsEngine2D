@@ -9,7 +9,7 @@ int DronsEngine::Game::run() {
 	init();
 
 	while (gameWindow->isOpen()) {
-        //  Calculating frametime
+		//  Calculating frametime
 		elapsedTime = gameTime->restart();
 		idleLag += elapsedTime;
 		physicsLag += elapsedTime;
@@ -35,11 +35,11 @@ int DronsEngine::Game::run() {
 }
 
 int DronsEngine::Game::init() {
-    //  Open settings.ini
+	//  Open settings.ini
 	DronsEngine::INIFile INIreader("settings.ini");
 
-    //  Load settings
-    std::string readedString = INIreader.read("Video", "Width");
+	//  Load settings
+	std::string readedString = INIreader.read("Video", "Width");
 	gameWindowWidth = readedString != "" ? std::stoi(readedString) : sf::VideoMode::getDesktopMode().width;
 	readedString = INIreader.read("Video", "Height");
 	gameWindowHeight = readedString != "" ? std::stoi(readedString) : sf::VideoMode::getDesktopMode().height;
@@ -49,18 +49,18 @@ int DronsEngine::Game::init() {
 	PhysicsFPSCap = readedString != "" ? std::stoi(readedString) : 30;
 	readedString = INIreader.read("Video", "Mode");
 	switch (std::stoi(readedString)) {
-    case 0:
-        gameWindowMode = sf::Style::Titlebar | sf::Style::Close;
-        break;
-    case 1:
-        gameWindowMode = sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize;
-        break;
-    case 2:
-        gameWindowMode = sf::Style::Fullscreen;
-        break;
-    case 3:
-        gameWindowMode = sf::Style::None;
-        break;
+	case 0:
+		gameWindowMode = sf::Style::Titlebar | sf::Style::Close;
+		break;
+	case 1:
+		gameWindowMode = sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize;
+		break;
+	case 2:
+		gameWindowMode = sf::Style::Fullscreen;
+		break;
+	case 3:
+		gameWindowMode = sf::Style::None;
+		break;
 	}
 	INIreader.closeINI();
 
@@ -95,11 +95,11 @@ int DronsEngine::Game::handleEvents() {
 	sf::Event event;
 
 	while (gameWindow->pollEvent(event)) {
-        //  Exiting game
+		//  Exiting game
 		if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 			gameWindow->close();
 
-        // Resizing game window
+		//  Resizing game window
 		if (event.type == sf::Event::Resized) {
 			sf::View gameView(sf::Vector2f(gameWindowWidth / 2, gameWindowHeight / 2), sf::Vector2f(gameViewWidth, gameViewHeight));
 			gameView.zoom(1 / (gameWindow->getSize().x / (float)gameViewWidth));
@@ -111,7 +111,7 @@ int DronsEngine::Game::handleEvents() {
 }
 
 int DronsEngine::Game::physicsUpdate(sf::Time deltaTime) {
-    // Getting mouse position
+	// Getting mouse position
 	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*gameWindow);
 	sf::Vector2f viewMousePos = gameWindow->mapPixelToCoords(pixelMousePos);
 
@@ -119,12 +119,14 @@ int DronsEngine::Game::physicsUpdate(sf::Time deltaTime) {
 		if (DronsEngine::circleAndPointCollide(viewMousePos, *shape)) {
 			shape->setFillColor(sf::Color::White);
 			mouseShape->setFillColor(sf::Color::Black);
-		} else {
+		}
+		else {
 			shape->setFillColor(sf::Color::Red);
 			mouseShape->setFillColor(sf::Color::Magenta);
 
 		}
-	} else {
+	}
+	else {
 		shape->setFillColor(sf::Color::Green);
 		mouseShape->setFillColor(sf::Color::Yellow);
 	}
@@ -133,7 +135,7 @@ int DronsEngine::Game::physicsUpdate(sf::Time deltaTime) {
 }
 
 int DronsEngine::Game::update(sf::Time deltaTime) {
-    // Getting mouse position
+	// Getting mouse position
 	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*gameWindow);
 	sf::Vector2f viewMousePos = gameWindow->mapPixelToCoords(pixelMousePos);
 

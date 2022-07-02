@@ -1,0 +1,34 @@
+﻿  Скопировано файлов:         1.
+  Скопировано файлов:         1.
+  Скопировано файлов:         1.
+  Скопировано файлов:         1.
+  Скопировано файлов:         1.
+  Скопировано файлов:         1.
+  Подпапка или файл F:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\resources уже существует.
+  F:\Projects\Visual Studio Projects\DronsEngine2D\resources\ball.wav
+  F:\Projects\Visual Studio Projects\DronsEngine2D\resources\sansation.ttf
+  Скопировано файлов:         2.
+  Game.cpp
+f:\projects\visual studio projects\dronsengine2d\source\game.cpp(68): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+f:\projects\visual studio projects\dronsengine2d\source\game.cpp(86): warning C4244: аргумент: преобразование "T" в "float", возможна потеря данных
+          with
+          [
+              T=unsigned int
+          ]
+f:\projects\visual studio projects\dronsengine2d\source\game.cpp(104): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+  main.cpp
+  Math.cpp
+  Object.cpp
+  INIFile.cpp
+  StringUtilities.cpp
+  Компиляция...
+  Создание кода...
+  DronsEngine2D.vcxproj -> F:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\DronsEngine2D.exe

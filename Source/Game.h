@@ -15,37 +15,37 @@
 #include "Utilities/INIFile.h"
 
 namespace DronsEngine {
-class Game {
-  private:
-	sf::CircleShape *shape;
-	sf::CircleShape *mouseShape;
+	class Game {
+	private:
+		sf::CircleShape* shape;
+		sf::CircleShape* mouseShape;
 
-	std::string gameTitle = "";
-	int gameWindowWidth = 0;
-	int gameWindowHeight = 0;
-	int gameViewWidth = 1280;
-	int gameViewHeight = 720;
-	int gameWindowMode;
-	sf::RenderWindow *gameWindow;
-	sf::Clock *gameTime;
-	sf::Time elapsedTime;
-	sf::Time idleLag;
-	sf::Time physicsLag;
-	int FPSCap = 0;
-	int PhysicsFPSCap = 0;
-	sf::Time msPerIdleFrame;
-	sf::Time msPerPhysicsFrame;
+		std::string gameTitle = "";
+		int gameWindowWidth = 0;
+		int gameWindowHeight = 0;
+		int gameViewWidth = 1280;
+		int gameViewHeight = 720;
+		int gameWindowMode;
+		sf::RenderWindow* gameWindow;
+		sf::Clock* gameTime;
+		sf::Time elapsedTime;
+		sf::Time idleLag;
+		sf::Time physicsLag;
+		int FPSCap = 0;
+		int PhysicsFPSCap = 0;
+		sf::Time msPerIdleFrame;
+		sf::Time msPerPhysicsFrame;
 
-	int init();
-	int handleEvents();
-	int physicsUpdate(sf::Time deltaTime);
-	int update(sf::Time deltaTime);
-	int render(sf::Time deltaTime);
+		int init();
+		int handleEvents();
+		int physicsUpdate(sf::Time deltaTime);
+		int update(sf::Time deltaTime);
+		int render(sf::Time deltaTime);
 
-  public:
-	Game(std::string gameTitle);
-	int run();
-};
+	public:
+		Game(std::string gameTitle);
+		int run();
+	};
 }
 
 #endif
