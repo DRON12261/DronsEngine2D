@@ -1,5 +1,4 @@
-#ifndef INIFILE_H
-#define INIFILE_H
+#pragma once
 
 #include <string>
 #include <iostream>
@@ -11,7 +10,8 @@
 #include "StringUtilities.h"
 
 namespace DronsEngine {
-	class INIFile {
+	class INIFile
+	{
 	public:
 		INIFile();
 		//конструктор с последующим открытием (не созданием!) ini файла
@@ -38,7 +38,6 @@ namespace DronsEngine {
 		std::string read(std::string section, std::string name);
 
 	protected:
-
 	private:
 		std::string currentFilePath;
 		std::ifstream currentFile;
@@ -47,6 +46,4 @@ namespace DronsEngine {
 		iniData_t data;
 		bool isOpened;
 	};
-}
-
-#endif
+}  // namespace DronsEngine

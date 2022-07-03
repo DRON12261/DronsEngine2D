@@ -4,6 +4,7 @@
 
 --++--viewport (hud под разные соотношения сторон)
 ------ini
+logger
 inputhandler
 работа с медиа файлами
 колизии
@@ -16,7 +17,8 @@ inputhandler
 
 */
 
-int main() {
+int main()
+{
 	DronsEngine::Game MyGame("DronsEngine Game");
 	return MyGame.run();
 }

@@ -1,5 +1,4 @@
-#ifndef OBJECT_H
-#define OBJECT_H
+#pragma once
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -8,7 +7,8 @@
 #include <SFML/Window.hpp>
 
 namespace DronsEngine {
-	class Object {
+	class Object
+	{
 	public:
 		Object();
 		virtual ~Object();
@@ -18,9 +18,6 @@ namespace DronsEngine {
 		virtual void render(sf::Time deltaTime);
 
 	protected:
-
 	private:
 	};
-}
-
-#endif
+}  // namespace DronsEngine

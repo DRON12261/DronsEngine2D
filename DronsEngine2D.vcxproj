@@ -395,6 +395,7 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include=".clang-format" />
     <None Include="extlibs\bin\x64\openal32.dll" />
     <None Include="extlibs\bin\x64\sfml-audio-2.dll" />
     <None Include="extlibs\bin\x64\sfml-audio-d-2.dll" />
@@ -611,7 +612,9 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
     <ClInclude Include="Source\Game.h" />
     <ClInclude Include="Source\Math\Math.h" />
     <ClInclude Include="Source\Object.h" />
+    <ClInclude Include="Source\Utilities\GameLogger.h" />
     <ClInclude Include="Source\Utilities\INIFile.h" />
+    <ClInclude Include="Source\Utilities\Logger.h" />
     <ClInclude Include="Source\Utilities\StringUtilities.h" />
   </ItemGroup>
   <ItemGroup>
@@ -619,7 +622,9 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Math\Math.cpp" />
     <ClCompile Include="Source\Object.cpp" />
+    <ClCompile Include="Source\Utilities\GameLogger.cpp" />
     <ClCompile Include="Source\Utilities\INIFile.cpp" />
+    <ClCompile Include="Source\Utilities\Logger.cpp" />
     <ClCompile Include="Source\Utilities\StringUtilities.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

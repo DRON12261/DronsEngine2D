@@ -1,5 +1,4 @@
-#ifndef GAME_H
-#define GAME_H
+#pragma once
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
@@ -13,9 +12,11 @@
 
 #include "Math/Math.h"
 #include "Utilities/INIFile.h"
+#include "Utilities/GameLogger.h"
 
 namespace DronsEngine {
-	class Game {
+	class Game
+	{
 	private:
 		sf::CircleShape* shape;
 		sf::CircleShape* mouseShape;
@@ -43,9 +44,9 @@ namespace DronsEngine {
 		int render(sf::Time deltaTime);
 
 	public:
+		DronsEngine::Logger GameLog;
 		Game(std::string gameTitle);
 		int run();
 	};
-}
+}  // namespace DronsEngine
 
-#endif

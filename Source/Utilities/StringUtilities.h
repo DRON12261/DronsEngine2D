@@ -1,5 +1,4 @@
-#ifndef STRINGUTILITIES_H
-#define STRINGUTILITIES_H
+#pragma once
 
 #include <algorithm>
 #include <cctype>
@@ -12,6 +11,4 @@ namespace DronsEngine {
 	std::string leftTrimCopy(std::string s);
 	std::string rightTrimCopy(std::string s);
 	std::string trimCopy(std::string s);
-}
-
-#endif
+}  // namespace DronsEngine
