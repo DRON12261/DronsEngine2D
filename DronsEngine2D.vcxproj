@@ -611,20 +611,22 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
     <ClInclude Include="extlibs\include\SFML\Window\WindowStyle.hpp" />
     <ClInclude Include="Source\Game.h" />
     <ClInclude Include="Source\Math\Math.h" />
-    <ClInclude Include="Source\Object.h" />
-    <ClInclude Include="Source\Utilities\GameLogger.h" />
+    <ClInclude Include="Source\Objects\Object.h" />
+    <ClInclude Include="Source\System\GameLogger.h" />
+    <ClInclude Include="Source\System\GameState.h" />
+    <ClInclude Include="Source\System\Logger.h" />
     <ClInclude Include="Source\Utilities\INIFile.h" />
-    <ClInclude Include="Source\Utilities\Logger.h" />
     <ClInclude Include="Source\Utilities\StringUtilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Math\Math.cpp" />
-    <ClCompile Include="Source\Object.cpp" />
-    <ClCompile Include="Source\Utilities\GameLogger.cpp" />
+    <ClCompile Include="Source\Objects\Object.cpp" />
+    <ClCompile Include="Source\System\GameLogger.cpp" />
+    <ClCompile Include="Source\System\GameState.cpp" />
+    <ClCompile Include="Source\System\Logger.cpp" />
     <ClCompile Include="Source\Utilities\INIFile.cpp" />
-    <ClCompile Include="Source\Utilities\Logger.cpp" />
     <ClCompile Include="Source\Utilities\StringUtilities.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

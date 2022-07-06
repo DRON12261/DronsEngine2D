@@ -12,7 +12,7 @@
 
 #include "Math/Math.h"
 #include "Utilities/INIFile.h"
-#include "Utilities/GameLogger.h"
+#include "System/GameLogger.h"
 
 namespace DronsEngine {
 	class Game

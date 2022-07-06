@@ -5,16 +5,20 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="Libraries">
       <UniqueIdentifier>{43f9ec9b-a1f5-4635-8e35-cb951207c1e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{0044c8bb-5c29-45bc-8502-d6e42df1396d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{3ff89357-1174-4952-8990-fec61b379f95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utilities">
+      <UniqueIdentifier>{2689c86e-2725-436c-a099-2dc97912be6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\System">
+      <UniqueIdentifier>{5ab9c96f-edbf-4613-a058-ed78ef9cfdae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -651,25 +655,28 @@
       <Filter>Libraries</Filter>
     </ClInclude>
     <ClInclude Include="Source\Game.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Object.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utilities\INIFile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Utilities\StringUtilities.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Math\Math.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files\Math</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utilities\Logger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Source\Utilities\INIFile.h">
+      <Filter>Source Files\Utilities</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Utilities\GameLogger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Source\Utilities\StringUtilities.h">
+      <Filter>Source Files\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\GameLogger.h">
+      <Filter>Source Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\Logger.h">
+      <Filter>Source Files\System</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Objects\Object.h">
+      <Filter>Source Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\System\GameState.h">
+      <Filter>Source Files\System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -679,23 +686,26 @@
     <ClCompile Include="Source\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Utilities\INIFile.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Source\Utilities\StringUtilities.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Utilities</Filter>
     </ClCompile>
     <ClCompile Include="Source\Math\Math.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Math</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utilities\Logger.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source\System\GameLogger.cpp">
+      <Filter>Source Files\System</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Utilities\GameLogger.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source\System\Logger.cpp">
+      <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Objects\Object.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\System\GameState.cpp">
+      <Filter>Source Files\System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
