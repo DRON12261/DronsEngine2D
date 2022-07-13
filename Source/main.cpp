@@ -2,6 +2,6 @@
 
 int main()
 {
-	DronsEngine::Game MyGame("DronsEngine Game");
-	return MyGame.run();
+	DronsEngine::Game DronsGame("DronsEngine Game");
+	return DronsGame.run();
 }

@@ -1,35 +1,20 @@
 #include "StringUtilities.h"
 
-void DronsEngine::leftTrim(std::string& s)
+void DronsEngine::leftTrim(std::string& t_string)
 {
-	s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) { return !std::isspace(ch); }));
+	t_string.erase(t_string.begin(),
+	               std::find_if(t_string.begin(), t_string.end(), [](unsigned char ch) { return !std::isspace(ch); }));
 }
 
-void DronsEngine::rightTrim(std::string& s)
+void DronsEngine::rightTrim(std::string& t_string)
 {
-	s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(), s.end());
+	t_string.erase(
+	    std::find_if(t_string.rbegin(), t_string.rend(), [](unsigned char ch) { return !std::isspace(ch); }).base(),
+	    t_string.end());
 }
 
-void DronsEngine::trim(std::string& s)
+void DronsEngine::trim(std::string& t_string)
 {
-	DronsEngine::leftTrim(s);
-	DronsEngine::rightTrim(s);
-}
-
-std::string DronsEngine::leftTrimCopy(std::string s)
-{
-	DronsEngine::leftTrim(s);
-	return s;
-}
-
-std::string DronsEngine::rightTrimCopy(std::string s)
-{
-	DronsEngine::rightTrim(s);
-	return s;
-}
-
-std::string DronsEngine::trimCopy(std::string s)
-{
-	DronsEngine::trim(s);
-	return s;
+	DronsEngine::leftTrim(t_string);
+	DronsEngine::rightTrim(t_string);
 }

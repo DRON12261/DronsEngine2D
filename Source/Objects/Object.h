@@ -13,9 +13,9 @@ namespace DronsEngine {
 		Object();
 		virtual ~Object();
 
-		virtual void update(sf::Time deltaTime);
-		virtual void physicsUpdate(sf::Time deltaTime);
-		virtual void render(sf::Time deltaTime);
+		virtual void update(sf::Time t_deltaTime);
+		virtual void physicsUpdate(sf::Time t_deltaTime);
+		virtual void render(sf::Time t_deltaTime);
 
 	protected:
 	private:

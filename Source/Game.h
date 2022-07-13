@@ -39,13 +39,14 @@ namespace DronsEngine {
 
 		int init();
 		int handleEvents();
-		int physicsUpdate(sf::Time deltaTime);
-		int update(sf::Time deltaTime);
-		int render(sf::Time deltaTime);
+		int physicsUpdate(sf::Time t_deltaTime);
+		int update(sf::Time t_deltaTime);
+		int render(sf::Time t_deltaTime);
 
 	public:
 		DronsEngine::Logger GameLog;
-		Game(std::string gameTitle);
+		Game(std::string t_gameTitle);
+		~Game();
 		int run();
 	};
 }  // namespace DronsEngine

@@ -1,16 +1,16 @@
 #include "Logger.h"
 
-DronsEngine::Logger::Logger(std::string path)
+DronsEngine::Logger::Logger(std::string t_path)
 {
-	isOpened = false;
-	path = "";
-	open(path);
+	m_isOpened = false;
+	t_path = "";
+	open(t_path);
 }
 
 DronsEngine::Logger::Logger()
 {
-	isOpened = false;
-	path = "";
+	m_isOpened = false;
+	m_path = "";
 }
 
 DronsEngine::Logger::~Logger()
@@ -18,38 +18,38 @@ DronsEngine::Logger::~Logger()
 	close();
 }
 
-void DronsEngine::Logger::open(std::string path)
+void DronsEngine::Logger::open(std::string t_path)
 {
-	logStream.open(path, std::ofstream::out | std::ofstream::app);
+	m_logStream.open(t_path, std::ofstream::out | std::ofstream::app);
 
-	if (!logStream.is_open())
+	if (!m_logStream.is_open())
 	{
-		std::cerr << "Failed to open log file \"" << path << "\"." << std::endl;
+		std::cerr << "Failed to open log file \"" << t_path << "\"." << std::endl;
 		exit(1);
 	}
 
-	isOpened = true;
-	this->path = path;
+	m_isOpened = true;
+	this->m_path = t_path;
 }
 
 void DronsEngine::Logger::close()
 {
-	if (logStream.is_open())
+	if (m_logStream.is_open())
 	{
-		logStream << std::endl << std::endl << std::endl;
-		logStream.close();
+		m_logStream << std::endl << std::endl << std::endl;
+		m_logStream.close();
 	}
 
-	isOpened = false;
-	path = "";
+	m_isOpened = false;
+	m_path = "";
 }
 
 bool DronsEngine::Logger::isOpen()
 {
-	return isOpened;
+	return m_isOpened;
 }
 
-void DronsEngine::Logger::log(std::string message)
+void DronsEngine::Logger::log(std::string t_message)
 {
 	auto t = std::time(nullptr);
 	std::tm tm{};
@@ -59,10 +59,14 @@ void DronsEngine::Logger::log(std::string message)
 	oss << std::put_time(&tm, "[%d.%m.%Y | %H:%M:%S]");
 	auto dateStr = oss.str();
 
-	logStream << dateStr << message << std::endl;
+	m_logStream << dateStr << " " << t_message << std::endl;
+
+	std::cout << ConsoleColor::bg_black << ConsoleColor::fg_light_green << dateStr << ConsoleColor::bg_black
+	          << ConsoleColor::fg_light_blue << " " << t_message << ConsoleColor::fg_default << ConsoleColor::bg_default
+	          << std::endl;
 }
 
-void DronsEngine::Logger::logWarning(std::string message)
+void DronsEngine::Logger::logWarning(std::string t_message)
 {
 	auto t = std::time(nullptr);
 	std::tm tm{};
@@ -72,10 +76,15 @@ void DronsEngine::Logger::logWarning(std::string message)
 	oss << std::put_time(&tm, "[%d.%m.%Y | %H:%M:%S]");
 	auto dateStr = oss.str();
 
-	logStream << dateStr << "[WARNING]" << message << std::endl;
+	m_logStream << dateStr << "[ WARNING ] " << t_message << std::endl;
+	std::cout << ConsoleColor::bg_black << ConsoleColor::fg_light_green << dateStr << ConsoleColor::fg_default
+	          << ConsoleColor::bg_default << " " << ConsoleColor::fg_black << ConsoleColor::bg_yellow << "[ WARNING ]"
+	          << ConsoleColor::fg_default << ConsoleColor::bg_default << " " << ConsoleColor::bg_black
+	          << ConsoleColor::fg_light_yellow << t_message << ConsoleColor::fg_default << ConsoleColor::bg_default
+	          << std::endl;
 }
 
-void DronsEngine::Logger::logError(std::string message)
+void DronsEngine::Logger::logError(std::string t_message)
 {
 	auto t = std::time(nullptr);
 	std::tm tm{};
@@ -85,5 +94,10 @@ void DronsEngine::Logger::logError(std::string message)
 	oss << std::put_time(&tm, "[%d.%m.%Y | %H:%M:%S]");
 	auto dateStr = oss.str();
 
-	logStream << dateStr << "[ERROR]" << message << std::endl;
+	m_logStream << dateStr << "[  ERROR  ] " << t_message << std::endl;
+	std::cout << ConsoleColor::bg_black << ConsoleColor::fg_light_green << dateStr << ConsoleColor::fg_default
+	          << ConsoleColor::bg_default << " " << ConsoleColor::fg_black << ConsoleColor::bg_red << "[  ERROR  ]"
+	          << ConsoleColor::fg_default << ConsoleColor::bg_default << " " << ConsoleColor::bg_black
+	          << ConsoleColor::fg_light_red << t_message << ConsoleColor::fg_default << ConsoleColor::bg_default
+	          << std::endl;
 }

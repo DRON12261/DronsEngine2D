@@ -1,10 +1,16 @@
 #include "Game.h"
 
-DronsEngine::Game::Game(std::string gameTitle)
+DronsEngine::Game::Game(std::string t_gameTitle)
 {
-	DronsEngine::GameLogger::log("Launching \"" + gameTitle + "\" ...");
-	this->m_gameTitle = gameTitle;
+	DronsEngine::GameLogger::log("Launching \"" + t_gameTitle + "\"...");
+	this->m_gameTitle = t_gameTitle;
 	mp_gameWindow = new sf::RenderWindow();
+}
+
+DronsEngine::Game::~Game()
+{
+	delete mp_gameWindow;
+	delete mp_gameTime;
 }
 
 int DronsEngine::Game::run()
@@ -76,7 +82,8 @@ int DronsEngine::Game::init()
 	INIreader.closeINI();
 
 	//  Prepare main view
-	sf::View gameView(sf::Vector2f(m_gameWindowWidth / 2, m_gameWindowHeight / 2), sf::Vector2f(m_gameViewWidth, m_gameViewHeight));
+	sf::View gameView(sf::Vector2f(m_gameWindowWidth / 2, m_gameWindowHeight / 2),
+	                  sf::Vector2f(m_gameViewWidth, m_gameViewHeight));
 	gameView.zoom(1 / (m_gameWindowWidth / (float)m_gameViewWidth));
 
 	//  Initialization other parameters
@@ -88,7 +95,7 @@ int DronsEngine::Game::init()
 	m_msPerPhysicsFrame = sf::seconds(1.0f / m_physicsFPSCap);
 	delete mp_gameWindow;
 	mp_gameWindow = new sf::RenderWindow(sf::VideoMode(m_gameWindowWidth, m_gameWindowHeight), m_gameTitle, m_gameWindowMode,
-	                                  sf::ContextSettings(0, 0, 1));
+	                                     sf::ContextSettings(0, 0, 1));
 	mp_gameWindow->setView(gameView);
 
 	//  Initialization test objects
@@ -130,7 +137,7 @@ int DronsEngine::Game::handleEvents()
 	return 0;
 }
 
-int DronsEngine::Game::physicsUpdate(sf::Time deltaTime)
+int DronsEngine::Game::physicsUpdate(sf::Time t_deltaTime)
 {
 	// Getting mouse position
 	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*mp_gameWindow);
@@ -160,7 +167,7 @@ int DronsEngine::Game::physicsUpdate(sf::Time deltaTime)
 	return 0;
 }
 
-int DronsEngine::Game::update(sf::Time deltaTime)
+int DronsEngine::Game::update(sf::Time t_deltaTime)
 {
 	// Getting mouse position
 	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*mp_gameWindow);
@@ -171,7 +178,7 @@ int DronsEngine::Game::update(sf::Time deltaTime)
 	return 0;
 }
 
-int DronsEngine::Game::render(sf::Time deltaTime)
+int DronsEngine::Game::render(sf::Time t_deltaTime)
 {
 	mp_gameWindow->clear();
 

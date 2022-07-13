@@ -7,23 +7,25 @@
 #include <ctime>
 #include <sstream>
 
+#include "ConsoleColor.h"
+
 namespace DronsEngine {
 	class Logger
 	{
 	private:
-		bool isOpened;
-		std::ofstream logStream;
-		std::string path;
+		bool m_isOpened;
+		std::ofstream m_logStream;
+		std::string m_path;
 		
 	public:
 		Logger();
-		Logger(std::string path);
+		Logger(std::string t_path);
 		~Logger();
-		void open(std::string path);
+		void open(std::string t_path);
 		void close();
 		bool isOpen();
-		void log(std::string message);
-		void logWarning(std::string message);
-		void logError(std::string message);
+		void log(std::string t_message);
+		void logWarning(std::string t_message);
+		void logError(std::string t_message);
 	};
 }  // namespace DronsEngine

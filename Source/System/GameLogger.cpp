@@ -6,25 +6,26 @@ DronsEngine::GameLogger& DronsEngine::GameLogger::get()
 	return instance;
 }
 
-void DronsEngine::GameLogger::log(std::string message)
+void DronsEngine::GameLogger::log(std::string t_message)
 {
-	get().logger.log(message);
+	get().m_logger.log(t_message);
 }
 
-void DronsEngine::GameLogger::logWarning(std::string message)
+void DronsEngine::GameLogger::logWarning(std::string t_message)
 {
-	get().logger.logWarning(message);
+	get().m_logger.logWarning(t_message);
 }
 
-void DronsEngine::GameLogger::logError(std::string message)
+void DronsEngine::GameLogger::logError(std::string t_message)
 {
-	get().logger.logError(message);
+	get().m_logger.logError(t_message);
 }
 
 DronsEngine::GameLogger::GameLogger()
 {
-	if (!logger.isOpen())
+	if (!m_logger.isOpen())
 	{
+		//rewrite varnames
 		auto t = std::time(nullptr);
 		std::tm tm{};
 		localtime_s(&tm, &t);
@@ -33,6 +34,6 @@ DronsEngine::GameLogger::GameLogger()
 		oss << std::put_time(&tm, "[%d.%m.%Y]");
 		auto dateStr = oss.str();
 
-		logger.open("Logs/log" + dateStr + ".txt");
+		m_logger.open("Logs/log" + dateStr + ".txt");
 	}
 }
