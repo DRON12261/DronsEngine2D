@@ -3,8 +3,8 @@
 DronsEngine::Game::Game(std::string gameTitle)
 {
 	DronsEngine::GameLogger::log("Launching \"" + gameTitle + "\" ...");
-	this->gameTitle = gameTitle;
-	gameWindow = new sf::RenderWindow();
+	this->m_gameTitle = gameTitle;
+	mp_gameWindow = new sf::RenderWindow();
 }
 
 int DronsEngine::Game::run()
@@ -12,29 +12,29 @@ int DronsEngine::Game::run()
 	init();
 
 	DronsEngine::GameLogger::log("Start game loop...");
-	while (gameWindow->isOpen())
+	while (mp_gameWindow->isOpen())
 	{
 		//  Calculating frametime
-		elapsedTime = gameTime->restart();
-		idleLag += elapsedTime;
-		physicsLag += elapsedTime;
+		m_elapsedTime = mp_gameTime->restart();
+		m_idleLag += m_elapsedTime;
+		m_physicsLag += m_elapsedTime;
 
 		//  Handling events
 		handleEvents();
 
 		//  Physics loop
-		if (physicsLag > msPerPhysicsFrame)
+		if (m_physicsLag > m_msPerPhysicsFrame)
 		{
-			physicsUpdate(physicsLag);
-			physicsLag -= msPerPhysicsFrame;
+			physicsUpdate(m_physicsLag);
+			m_physicsLag -= m_msPerPhysicsFrame;
 		}
 
 		// Idle and render loop
-		if (idleLag > msPerIdleFrame)
+		if (m_idleLag > m_msPerIdleFrame)
 		{
-			update(idleLag);
-			render(idleLag);
-			idleLag -= msPerIdleFrame;
+			update(m_idleLag);
+			render(m_idleLag);
+			m_idleLag -= m_msPerIdleFrame;
 		}
 	}
 
@@ -50,55 +50,55 @@ int DronsEngine::Game::init()
 
 	//  Load settings
 	std::string readedString = INIreader.read("Video", "Width");
-	gameWindowWidth = readedString != "" ? std::stoi(readedString) : sf::VideoMode::getDesktopMode().width;
+	m_gameWindowWidth = readedString != "" ? std::stoi(readedString) : sf::VideoMode::getDesktopMode().width;
 	readedString = INIreader.read("Video", "Height");
-	gameWindowHeight = readedString != "" ? std::stoi(readedString) : sf::VideoMode::getDesktopMode().height;
+	m_gameWindowHeight = readedString != "" ? std::stoi(readedString) : sf::VideoMode::getDesktopMode().height;
 	readedString = INIreader.read("Video", "FPSCap");
-	FPSCap = readedString != "" ? std::stoi(readedString) : 60;
+	m_FPSCap = readedString != "" ? std::stoi(readedString) : 60;
 	readedString = INIreader.read("Other", "PhysicsFPSCap");
-	PhysicsFPSCap = readedString != "" ? std::stoi(readedString) : 30;
+	m_physicsFPSCap = readedString != "" ? std::stoi(readedString) : 30;
 	readedString = INIreader.read("Video", "Mode");
 	switch (std::stoi(readedString))
 	{
 		case 0:
-			gameWindowMode = sf::Style::Titlebar | sf::Style::Close;
+			m_gameWindowMode = sf::Style::Titlebar | sf::Style::Close;
 			break;
 		case 1:
-			gameWindowMode = sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize;
+			m_gameWindowMode = sf::Style::Titlebar | sf::Style::Close | sf::Style::Resize;
 			break;
 		case 2:
-			gameWindowMode = sf::Style::Fullscreen;
+			m_gameWindowMode = sf::Style::Fullscreen;
 			break;
 		case 3:
-			gameWindowMode = sf::Style::None;
+			m_gameWindowMode = sf::Style::None;
 			break;
 	}
 	INIreader.closeINI();
 
 	//  Prepare main view
-	sf::View gameView(sf::Vector2f(gameWindowWidth / 2, gameWindowHeight / 2), sf::Vector2f(gameViewWidth, gameViewHeight));
-	gameView.zoom(1 / (gameWindowWidth / (float)gameViewWidth));
+	sf::View gameView(sf::Vector2f(m_gameWindowWidth / 2, m_gameWindowHeight / 2), sf::Vector2f(m_gameViewWidth, m_gameViewHeight));
+	gameView.zoom(1 / (m_gameWindowWidth / (float)m_gameViewWidth));
 
 	//  Initialization other parameters
-	gameTime = new sf::Clock();
-	elapsedTime = sf::Time::Zero;
-	idleLag = sf::Time::Zero;
-	physicsLag = sf::Time::Zero;
-	msPerIdleFrame = sf::seconds(1.0f / FPSCap);
-	msPerPhysicsFrame = sf::seconds(1.0f / PhysicsFPSCap);
-	delete gameWindow;
-	gameWindow = new sf::RenderWindow(sf::VideoMode(gameWindowWidth, gameWindowHeight), gameTitle, gameWindowMode,
+	mp_gameTime = new sf::Clock();
+	m_elapsedTime = sf::Time::Zero;
+	m_idleLag = sf::Time::Zero;
+	m_physicsLag = sf::Time::Zero;
+	m_msPerIdleFrame = sf::seconds(1.0f / m_FPSCap);
+	m_msPerPhysicsFrame = sf::seconds(1.0f / m_physicsFPSCap);
+	delete mp_gameWindow;
+	mp_gameWindow = new sf::RenderWindow(sf::VideoMode(m_gameWindowWidth, m_gameWindowHeight), m_gameTitle, m_gameWindowMode,
 	                                  sf::ContextSettings(0, 0, 1));
-	gameWindow->setView(gameView);
+	mp_gameWindow->setView(gameView);
 
 	//  Initialization test objects
-	shape = new sf::CircleShape(50.f);
-	shape->setFillColor(sf::Color::Green);
-	shape->setOrigin(shape->getRadius(), shape->getRadius());
-	shape->setPosition(gameWindow->getSize().x / 2, gameWindow->getSize().y / 2);
-	mouseShape = new sf::CircleShape(20.f);
-	mouseShape->setFillColor(sf::Color::Yellow);
-	mouseShape->setOrigin(mouseShape->getRadius(), mouseShape->getRadius());
+	m_shape = new sf::CircleShape(50.f);
+	m_shape->setFillColor(sf::Color::Green);
+	m_shape->setOrigin(m_shape->getRadius(), m_shape->getRadius());
+	m_shape->setPosition(mp_gameWindow->getSize().x / 2, mp_gameWindow->getSize().y / 2);
+	m_mouseShape = new sf::CircleShape(20.f);
+	m_mouseShape->setFillColor(sf::Color::Yellow);
+	m_mouseShape->setOrigin(m_mouseShape->getRadius(), m_mouseShape->getRadius());
 
 	return 0;
 }
@@ -107,23 +107,23 @@ int DronsEngine::Game::handleEvents()
 {
 	sf::Event event;
 
-	while (gameWindow->pollEvent(event))
+	while (mp_gameWindow->pollEvent(event))
 	{
 		//  Exiting game
 		if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
 		{
 			DronsEngine::GameLogger::log("Exiting...");
-			gameWindow->close();
+			mp_gameWindow->close();
 		}
 
 		//  Resizing game window
 		if (event.type == sf::Event::Resized)
 		{
 			DronsEngine::GameLogger::log("Resizing game window...");
-			sf::View gameView(sf::Vector2f(gameWindowWidth / 2, gameWindowHeight / 2),
-			                  sf::Vector2f(gameViewWidth, gameViewHeight));
-			gameView.zoom(1 / (gameWindow->getSize().x / (float)gameViewWidth));
-			gameWindow->setView(gameView);
+			sf::View gameView(sf::Vector2f(m_gameWindowWidth / 2, m_gameWindowHeight / 2),
+			                  sf::Vector2f(m_gameViewWidth, m_gameViewHeight));
+			gameView.zoom(1 / (mp_gameWindow->getSize().x / (float)m_gameViewWidth));
+			mp_gameWindow->setView(gameView);
 		}
 	}
 
@@ -133,28 +133,28 @@ int DronsEngine::Game::handleEvents()
 int DronsEngine::Game::physicsUpdate(sf::Time deltaTime)
 {
 	// Getting mouse position
-	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*gameWindow);
-	sf::Vector2f viewMousePos = gameWindow->mapPixelToCoords(pixelMousePos);
+	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*mp_gameWindow);
+	sf::Vector2f viewMousePos = mp_gameWindow->mapPixelToCoords(pixelMousePos);
 
-	if (DronsEngine::circlesCollide(*shape, *mouseShape))
+	if (DronsEngine::circlesCollide(*m_shape, *m_mouseShape))
 	{
-		if (DronsEngine::circleAndPointCollide(viewMousePos, *shape))
+		if (DronsEngine::circleAndPointCollide(viewMousePos, *m_shape))
 		{
-			shape->setFillColor(sf::Color::White);
-			mouseShape->setFillColor(sf::Color::Black);
+			m_shape->setFillColor(sf::Color::White);
+			m_mouseShape->setFillColor(sf::Color::Black);
 			DronsEngine::GameLogger::logError("EVENT 1!");
 		}
 		else
 		{
-			shape->setFillColor(sf::Color::Red);
-			mouseShape->setFillColor(sf::Color::Magenta);
+			m_shape->setFillColor(sf::Color::Red);
+			m_mouseShape->setFillColor(sf::Color::Magenta);
 			DronsEngine::GameLogger::logWarning("EVENT 2!");
 		}
 	}
 	else
 	{
-		shape->setFillColor(sf::Color::Green);
-		mouseShape->setFillColor(sf::Color::Yellow);
+		m_shape->setFillColor(sf::Color::Green);
+		m_mouseShape->setFillColor(sf::Color::Yellow);
 	}
 
 	return 0;
@@ -163,22 +163,22 @@ int DronsEngine::Game::physicsUpdate(sf::Time deltaTime)
 int DronsEngine::Game::update(sf::Time deltaTime)
 {
 	// Getting mouse position
-	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*gameWindow);
-	sf::Vector2f viewMousePos = gameWindow->mapPixelToCoords(pixelMousePos);
+	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*mp_gameWindow);
+	sf::Vector2f viewMousePos = mp_gameWindow->mapPixelToCoords(pixelMousePos);
 
-	mouseShape->setPosition(viewMousePos);
+	m_mouseShape->setPosition(viewMousePos);
 
 	return 0;
 }
 
 int DronsEngine::Game::render(sf::Time deltaTime)
 {
-	gameWindow->clear();
+	mp_gameWindow->clear();
 
-	gameWindow->draw(*shape);
-	gameWindow->draw(*mouseShape);
+	mp_gameWindow->draw(*m_shape);
+	mp_gameWindow->draw(*m_mouseShape);
 
-	gameWindow->display();
+	mp_gameWindow->display();
 
 	return 0;
 }

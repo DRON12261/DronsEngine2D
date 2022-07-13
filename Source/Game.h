@@ -18,24 +18,24 @@ namespace DronsEngine {
 	class Game
 	{
 	private:
-		sf::CircleShape* shape;
-		sf::CircleShape* mouseShape;
+		sf::CircleShape* m_shape;
+		sf::CircleShape* m_mouseShape;
 
-		std::string gameTitle = "";
-		int gameWindowWidth = 0;
-		int gameWindowHeight = 0;
-		int gameViewWidth = 1280;
-		int gameViewHeight = 720;
-		int gameWindowMode;
-		sf::RenderWindow* gameWindow;
-		sf::Clock* gameTime;
-		sf::Time elapsedTime;
-		sf::Time idleLag;
-		sf::Time physicsLag;
-		int FPSCap = 0;
-		int PhysicsFPSCap = 0;
-		sf::Time msPerIdleFrame;
-		sf::Time msPerPhysicsFrame;
+		std::string m_gameTitle = "";
+		int m_gameWindowWidth = 0;
+		int m_gameWindowHeight = 0;
+		int m_gameViewWidth = 1280;
+		int m_gameViewHeight = 720;
+		int m_gameWindowMode;
+		sf::RenderWindow* mp_gameWindow;
+		sf::Clock* mp_gameTime;
+		sf::Time m_elapsedTime;
+		sf::Time m_idleLag;
+		sf::Time m_physicsLag;
+		int m_FPSCap = 0;
+		int m_physicsFPSCap = 0;
+		sf::Time m_msPerIdleFrame;
+		sf::Time m_msPerPhysicsFrame;
 
 		int init();
 		int handleEvents();
