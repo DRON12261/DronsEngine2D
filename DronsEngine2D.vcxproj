@@ -620,6 +620,7 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
     <ClInclude Include="Source\Game.h" />
     <ClInclude Include="Source\Math\Math.h" />
     <ClInclude Include="Source\Objects\Object.h" />
+    <ClInclude Include="Source\States\SceneState.h" />
     <ClInclude Include="Source\System\ConsoleColor.h" />
     <ClInclude Include="Source\System\GameLogger.h" />
     <ClInclude Include="Source\System\GameState.h" />
@@ -632,6 +633,7 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Math\Math.cpp" />
     <ClCompile Include="Source\Objects\Object.cpp" />
+    <ClCompile Include="Source\States\SceneState.cpp" />
     <ClCompile Include="Source\System\ConsoleColor.cpp" />
     <ClCompile Include="Source\System\GameLogger.cpp" />
     <ClCompile Include="Source\System\GameState.cpp" />

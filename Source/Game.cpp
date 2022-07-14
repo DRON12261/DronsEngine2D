@@ -2,7 +2,7 @@
 
 DronsEngine::Game::Game(std::string t_gameTitle)
 {
-	DronsEngine::GameLogger::log("Launching \"" + t_gameTitle + "\"...");
+	GameLogger::log("Launching \"" + t_gameTitle + "\"...");
 	this->m_gameTitle = t_gameTitle;
 	mp_gameWindow = new sf::RenderWindow();
 }
@@ -11,13 +11,20 @@ DronsEngine::Game::~Game()
 {
 	delete mp_gameWindow;
 	delete mp_gameTime;
+
+	while (!m_gameStates.empty())
+	{
+		m_gameStates.top()->endState();
+		delete m_gameStates.top();
+		m_gameStates.pop();
+	}
 }
 
 int DronsEngine::Game::run()
 {
 	init();
 
-	DronsEngine::GameLogger::log("Start game loop...");
+	GameLogger::log("Start game loop...");
 	while (mp_gameWindow->isOpen())
 	{
 		//  Calculating frametime
@@ -42,6 +49,21 @@ int DronsEngine::Game::run()
 			render(m_idleLag);
 			m_idleLag -= m_msPerIdleFrame;
 		}
+
+		//	Check game states
+		if (!m_gameStates.empty())
+		{
+			if (m_gameStates.top()->isQuit())
+			{
+				m_gameStates.top()->endState();
+				delete m_gameStates.top();
+				m_gameStates.pop();
+			}
+		}
+		else
+		{
+			close();
+		}
 	}
 
 	return 0;
@@ -49,10 +71,20 @@ int DronsEngine::Game::run()
 
 int DronsEngine::Game::init()
 {
-	DronsEngine::GameLogger::log("Initialization...");
+	GameLogger::log("Initialization...");
 
+	initSettings();
+	initWindow();
+	initStates();
+	initObjects();
+
+	return 0;
+}
+
+int DronsEngine::Game::initSettings()
+{
 	//  Open settings.ini
-	DronsEngine::INIFile INIreader("Configs/Settings.ini");
+	INIFile INIreader("Configs/Settings.ini");
 
 	//  Load settings
 	std::string readedString = INIreader.read("Video", "Width");
@@ -81,32 +113,43 @@ int DronsEngine::Game::init()
 	}
 	INIreader.closeINI();
 
-	//  Prepare main view
-	sf::View gameView(sf::Vector2f(m_gameWindowWidth / 2, m_gameWindowHeight / 2),
-	                  sf::Vector2f(m_gameViewWidth, m_gameViewHeight));
-	gameView.zoom(1 / (m_gameWindowWidth / (float)m_gameViewWidth));
-
-	//  Initialization other parameters
+	//	Initialization other parameters
 	mp_gameTime = new sf::Clock();
 	m_elapsedTime = sf::Time::Zero;
 	m_idleLag = sf::Time::Zero;
 	m_physicsLag = sf::Time::Zero;
 	m_msPerIdleFrame = sf::seconds(1.0f / m_FPSCap);
 	m_msPerPhysicsFrame = sf::seconds(1.0f / m_physicsFPSCap);
+
+	return 0;
+}
+
+int DronsEngine::Game::initWindow()
+{
+	//  Prepare main view
+	sf::View gameView(sf::Vector2f(m_gameWindowWidth / 2, m_gameWindowHeight / 2),
+	                  sf::Vector2f(m_gameViewWidth, m_gameViewHeight));
+	gameView.zoom(1 / (m_gameWindowWidth / (float)m_gameViewWidth));
+
+	//  Initialization window
 	delete mp_gameWindow;
 	mp_gameWindow = new sf::RenderWindow(sf::VideoMode(m_gameWindowWidth, m_gameWindowHeight), m_gameTitle, m_gameWindowMode,
 	                                     sf::ContextSettings(0, 0, 1));
 	mp_gameWindow->setView(gameView);
 
-	//  Initialization test objects
-	m_shape = new sf::CircleShape(50.f);
-	m_shape->setFillColor(sf::Color::Green);
-	m_shape->setOrigin(m_shape->getRadius(), m_shape->getRadius());
-	m_shape->setPosition(mp_gameWindow->getSize().x / 2, mp_gameWindow->getSize().y / 2);
-	m_mouseShape = new sf::CircleShape(20.f);
-	m_mouseShape->setFillColor(sf::Color::Yellow);
-	m_mouseShape->setOrigin(m_mouseShape->getRadius(), m_mouseShape->getRadius());
+	return 0;
+}
 
+int DronsEngine::Game::initStates()
+{
+	m_gameStates.push(new SceneState(mp_gameWindow));
+	m_gameStates.top()->startState();
+
+	return 0;
+}
+
+int DronsEngine::Game::initObjects()
+{
 	return 0;
 }
 
@@ -117,75 +160,60 @@ int DronsEngine::Game::handleEvents()
 	while (mp_gameWindow->pollEvent(event))
 	{
 		//  Exiting game
-		if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+		if (event.type == sf::Event::Closed)
 		{
-			DronsEngine::GameLogger::log("Exiting...");
-			mp_gameWindow->close();
+			close();
 		}
 
 		//  Resizing game window
 		if (event.type == sf::Event::Resized)
 		{
-			DronsEngine::GameLogger::log("Resizing game window...");
+			GameLogger::log("Resizing game window...");
 			sf::View gameView(sf::Vector2f(m_gameWindowWidth / 2, m_gameWindowHeight / 2),
 			                  sf::Vector2f(m_gameViewWidth, m_gameViewHeight));
 			gameView.zoom(1 / (mp_gameWindow->getSize().x / (float)m_gameViewWidth));
 			mp_gameWindow->setView(gameView);
 		}
+
+		if (!m_gameStates.empty())
+			m_gameStates.top()->handleEvents(event);
 	}
 
 	return 0;
 }
 
-int DronsEngine::Game::physicsUpdate(sf::Time t_deltaTime)
+int DronsEngine::Game::physicsUpdate(const sf::Time& t_deltaTime)
 {
-	// Getting mouse position
-	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*mp_gameWindow);
-	sf::Vector2f viewMousePos = mp_gameWindow->mapPixelToCoords(pixelMousePos);
-
-	if (DronsEngine::circlesCollide(*m_shape, *m_mouseShape))
-	{
-		if (DronsEngine::circleAndPointCollide(viewMousePos, *m_shape))
-		{
-			m_shape->setFillColor(sf::Color::White);
-			m_mouseShape->setFillColor(sf::Color::Black);
-			DronsEngine::GameLogger::logError("EVENT 1!");
-		}
-		else
-		{
-			m_shape->setFillColor(sf::Color::Red);
-			m_mouseShape->setFillColor(sf::Color::Magenta);
-			DronsEngine::GameLogger::logWarning("EVENT 2!");
-		}
-	}
-	else
-	{
-		m_shape->setFillColor(sf::Color::Green);
-		m_mouseShape->setFillColor(sf::Color::Yellow);
-	}
+	if (!m_gameStates.empty())
+		m_gameStates.top()->physicsUpdate(t_deltaTime);
 
 	return 0;
 }
 
-int DronsEngine::Game::update(sf::Time t_deltaTime)
+int DronsEngine::Game::update(const sf::Time& t_deltaTime)
 {
-	// Getting mouse position
-	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*mp_gameWindow);
-	sf::Vector2f viewMousePos = mp_gameWindow->mapPixelToCoords(pixelMousePos);
-
-	m_mouseShape->setPosition(viewMousePos);
+	if (!m_gameStates.empty())
+		m_gameStates.top()->update(t_deltaTime);
 
 	return 0;
 }
 
-int DronsEngine::Game::render(sf::Time t_deltaTime)
+int DronsEngine::Game::render(const sf::Time& t_deltaTime)
 {
 	mp_gameWindow->clear();
 
-	mp_gameWindow->draw(*m_shape);
-	mp_gameWindow->draw(*m_mouseShape);
+	if (!m_gameStates.empty())
+		m_gameStates.top()->render(t_deltaTime);
 
 	mp_gameWindow->display();
+
+	return 0;
+}
+
+int DronsEngine::Game::close()
+{
+	GameLogger::log("Exiting...");
+	mp_gameWindow->close();
 
 	return 0;
 }

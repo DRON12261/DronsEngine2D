@@ -61,8 +61,10 @@ void DronsEngine::Logger::log(std::string t_message)
 
 	m_logStream << dateStr << " " << t_message << std::endl;
 
-	std::cout << ConsoleColor::bg_black << ConsoleColor::fg_light_green << dateStr << ConsoleColor::bg_black
-	          << ConsoleColor::fg_light_blue << " " << t_message << ConsoleColor::fg_default << ConsoleColor::bg_default
+	std::cout << ConsoleColor::bg_black << ConsoleColor::fg_light_green << dateStr << ConsoleColor::fg_default
+	          << ConsoleColor::bg_default << " " << ConsoleColor::fg_black << ConsoleColor::bg_blue << "[  INFO   ]"
+	          << ConsoleColor::fg_default << ConsoleColor::bg_default << " " << ConsoleColor::bg_black
+	          << ConsoleColor::fg_light_blue << t_message << ConsoleColor::fg_default << ConsoleColor::bg_default
 	          << std::endl;
 }
 

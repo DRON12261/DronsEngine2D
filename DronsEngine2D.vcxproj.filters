@@ -679,6 +679,7 @@
       <Filter>Source Files\System</Filter>
     </ClInclude>
     <ClInclude Include="Source\System\ConsoleColor.h" />
+    <ClInclude Include="Source\States\SceneState.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game.cpp">
@@ -709,6 +710,9 @@
       <Filter>Source Files\System</Filter>
     </ClCompile>
     <ClCompile Include="Source\System\ConsoleColor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\States\SceneState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -72,7 +72,7 @@ void DronsEngine::INIFile::openINI(std::string t_path)
 	{
 		std::string currentLine;
 		std::getline(m_file, currentLine);
-		DronsEngine::trim(currentLine);
+		trim(currentLine);
 
 		if (currentLine[0] == '[' && currentLine[currentLine.length() - 1] == ']' && currentLine.length() > 2)
 		{
@@ -93,13 +93,13 @@ void DronsEngine::INIFile::openINI(std::string t_path)
 				{
 					isValueNext = true;
 					currentName = currentLine.substr(currentNameStart, i);
-					DronsEngine::trim(currentName);
+					trim(currentName);
 					continue;
 				}
 				else if (i == (int)currentLine.length() - 1)
 				{
 					currentValue = currentLine.substr(currentValueStart, i - currentValueStart + 1);
-					DronsEngine::trim(currentValue);
+					trim(currentValue);
 					continue;
 				}
 				else

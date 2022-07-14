@@ -11,7 +11,7 @@ namespace DronsEngine {
 	class GameLogger
 	{
 	private:
-		DronsEngine::Logger m_logger;
+		Logger m_logger;
 		GameLogger();
 
 	public:
