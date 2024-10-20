@@ -44,13 +44,24 @@ void DronsEngine::Logger::close()
 	m_path = "";
 }
 
-bool DronsEngine::Logger::isOpen()
+bool DronsEngine::Logger::isOpen() const
 {
 	return m_isOpened;
 }
 
-void DronsEngine::Logger::log(std::string t_message)
+void DronsEngine::Logger::log(std::string t_message, Type t_type, std::string t_scope)
 {
+#ifndef _DEBUG
+	if (t_type == Type::DEBUG)
+		return;
+#endif
+
+	if (t_message.empty())
+		return;
+
+	if (t_scope.empty())
+		t_scope = "UNDEFINED";
+
 	auto t = std::time(nullptr);
 	std::tm tm{};
 	localtime_s(&tm, &t);
@@ -59,47 +70,42 @@ void DronsEngine::Logger::log(std::string t_message)
 	oss << std::put_time(&tm, "[%d.%m.%Y | %H:%M:%S]");
 	auto dateStr = oss.str();
 
-	m_logStream << dateStr << " " << t_message << std::endl;
+	std::string loggerConPrefix = "";
+	std::string loggerPrefix = "";
+	switch (t_type)
+	{
+		case Type::INFO:
+			loggerPrefix = "[INFO ]";
+			loggerConPrefix = ConsoleColor::fg_black + ConsoleColor::bg_light_green + loggerPrefix + ConsoleColor::bg_black +
+			                  ConsoleColor::fg_light_green;
+			break;
+		case Type::DEBUG:
+			loggerPrefix = "[DEBUG]";
+			loggerConPrefix = ConsoleColor::fg_black + ConsoleColor::bg_light_blue + loggerPrefix + ConsoleColor::bg_black +
+			                  ConsoleColor::fg_light_blue;
+			break;
+		case Type::WARNING:
+			loggerPrefix = "[WARN ]";
+			loggerConPrefix = ConsoleColor::fg_black + ConsoleColor::bg_yellow + loggerPrefix + ConsoleColor::bg_black +
+			                  ConsoleColor::fg_light_yellow;
+			break;
+		case Type::ERROR:
+			loggerPrefix = "[ERROR]";
+			loggerConPrefix = ConsoleColor::fg_black + ConsoleColor::bg_light_red + loggerPrefix + ConsoleColor::bg_black +
+			                  ConsoleColor::fg_light_red;
+			break;
+		case Type::FATAL:
+			loggerPrefix = "[FATAL]";
+			loggerConPrefix =
+			    ConsoleColor::fg_black + ConsoleColor::bg_red + loggerPrefix + ConsoleColor::bg_black + ConsoleColor::fg_red;
+			break;
+	}
 
-	std::cout << ConsoleColor::bg_black << ConsoleColor::fg_light_green << dateStr << ConsoleColor::fg_default
-	          << ConsoleColor::bg_default << " " << ConsoleColor::fg_black << ConsoleColor::bg_blue << "[  INFO   ]"
-	          << ConsoleColor::fg_default << ConsoleColor::bg_default << " " << ConsoleColor::bg_black
-	          << ConsoleColor::fg_light_blue << t_message << ConsoleColor::fg_default << ConsoleColor::bg_default
-	          << std::endl;
-}
+	if (m_isOpened)
+		m_logStream << dateStr + " " + loggerPrefix + "[" + t_scope + "] " + t_message << std::endl;
 
-void DronsEngine::Logger::logWarning(std::string t_message)
-{
-	auto t = std::time(nullptr);
-	std::tm tm{};
-	localtime_s(&tm, &t);
-
-	std::ostringstream oss;
-	oss << std::put_time(&tm, "[%d.%m.%Y | %H:%M:%S]");
-	auto dateStr = oss.str();
-
-	m_logStream << dateStr << "[ WARNING ] " << t_message << std::endl;
-	std::cout << ConsoleColor::bg_black << ConsoleColor::fg_light_green << dateStr << ConsoleColor::fg_default
-	          << ConsoleColor::bg_default << " " << ConsoleColor::fg_black << ConsoleColor::bg_yellow << "[ WARNING ]"
-	          << ConsoleColor::fg_default << ConsoleColor::bg_default << " " << ConsoleColor::bg_black
-	          << ConsoleColor::fg_light_yellow << t_message << ConsoleColor::fg_default << ConsoleColor::bg_default
-	          << std::endl;
-}
-
-void DronsEngine::Logger::logError(std::string t_message)
-{
-	auto t = std::time(nullptr);
-	std::tm tm{};
-	localtime_s(&tm, &t);
-
-	std::ostringstream oss;
-	oss << std::put_time(&tm, "[%d.%m.%Y | %H:%M:%S]");
-	auto dateStr = oss.str();
-
-	m_logStream << dateStr << "[  ERROR  ] " << t_message << std::endl;
-	std::cout << ConsoleColor::bg_black << ConsoleColor::fg_light_green << dateStr << ConsoleColor::fg_default
-	          << ConsoleColor::bg_default << " " << ConsoleColor::fg_black << ConsoleColor::bg_red << "[  ERROR  ]"
-	          << ConsoleColor::fg_default << ConsoleColor::bg_default << " " << ConsoleColor::bg_black
-	          << ConsoleColor::fg_light_red << t_message << ConsoleColor::fg_default << ConsoleColor::bg_default
+	std::cout << ConsoleColor::bg_black + ConsoleColor::fg_light_green + dateStr + ConsoleColor::fg_default +
+	                 ConsoleColor::bg_default + " " + loggerConPrefix + "[" + t_scope + "] " + t_message +
+	                 ConsoleColor::fg_default + ConsoleColor::bg_default
 	          << std::endl;
 }

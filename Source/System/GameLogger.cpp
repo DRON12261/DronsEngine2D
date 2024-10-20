@@ -6,19 +6,9 @@ DronsEngine::GameLogger& DronsEngine::GameLogger::get()
 	return instance;
 }
 
-void DronsEngine::GameLogger::log(std::string t_message)
+void DronsEngine::GameLogger::log(std::string t_message, Logger::Type t_type, std::string t_scope)
 {
-	get().m_logger.log(t_message);
-}
-
-void DronsEngine::GameLogger::logWarning(std::string t_message)
-{
-	get().m_logger.logWarning(t_message);
-}
-
-void DronsEngine::GameLogger::logError(std::string t_message)
-{
-	get().m_logger.logError(t_message);
+	get().m_logger.log(t_message, t_type, t_scope);
 }
 
 DronsEngine::GameLogger::GameLogger()

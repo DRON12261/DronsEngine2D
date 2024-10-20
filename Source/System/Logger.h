@@ -18,14 +18,20 @@ namespace DronsEngine {
 		std::string m_path;
 		
 	public:
+		enum Type {
+			INFO = 0, // Только информация
+			DEBUG, // Дополнительная информация для отладки
+			WARNING, // Предупреждение, некритичное для работоспособности
+			ERROR, // Ошибка, не препятствующая работоспособности
+			FATAL // Ошибка, блокирующая работоспособность
+		};
+
 		Logger();
 		Logger(std::string t_path);
 		~Logger();
 		void open(std::string t_path);
 		void close();
-		bool isOpen();
-		void log(std::string t_message);
-		void logWarning(std::string t_message);
-		void logError(std::string t_message);
+		bool isOpen() const;
+		void log(std::string t_message, Type t_type = Type::INFO, std::string t_scope = "");
 	};
 }  // namespace DronsEngine

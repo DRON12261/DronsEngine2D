@@ -7,7 +7,7 @@ DronsEngine::SceneState::SceneState(sf::RenderWindow* t_gameWindow) : GameState(
 
 void DronsEngine::SceneState::startState()
 {
-	GameLogger::log("Starting Scene state...");
+	GameLogger::log("Starting Scene state...", Logger::Type::DEBUG, "State System");
 
 	//  Initialization test objects
 	m_shape->setFillColor(sf::Color::Green);
@@ -20,7 +20,7 @@ void DronsEngine::SceneState::startState()
 
 void DronsEngine::SceneState::endState()
 {
-	GameLogger::log("Ending Scene state...");
+	GameLogger::log("Ending Scene state...", Logger::Type::DEBUG, "State System");
 
 	delete m_mouseShape;
 	delete m_shape;
@@ -46,13 +46,13 @@ void DronsEngine::SceneState::physicsUpdate(const sf::Time& t_deltaTime)
 		{
 			m_shape->setFillColor(sf::Color::White);
 			m_mouseShape->setFillColor(sf::Color::Black);
-			GameLogger::logError("EVENT 1!");
+			GameLogger::log("EVENT 1!", Logger::Type::DEBUG, "Physics Engine");
 		}
 		else
 		{
 			m_shape->setFillColor(sf::Color::Red);
 			m_mouseShape->setFillColor(sf::Color::Magenta);
-			GameLogger::logWarning("EVENT 2!");
+			GameLogger::log("EVENT 2!", Logger::Type::DEBUG, "Physics Engine");
 		}
 	}
 	else

@@ -2,9 +2,11 @@
 
 DronsEngine::Game::Game(std::string t_gameTitle)
 {
-	GameLogger::log("Launching \"" + t_gameTitle + "\"...");
+	GameLogger::log("Launching \"" + t_gameTitle + "\"...", Logger::Type::INFO, "Game");
 	this->m_gameTitle = t_gameTitle;
 	mp_gameWindow = new sf::RenderWindow();
+
+	init();
 }
 
 DronsEngine::Game::~Game()
@@ -22,9 +24,7 @@ DronsEngine::Game::~Game()
 
 int DronsEngine::Game::run()
 {
-	init();
-
-	GameLogger::log("Start game loop...");
+	GameLogger::log("Start game loop...", Logger::Type::INFO, "Game Loop");
 	while (mp_gameWindow->isOpen())
 	{
 		//  Calculating frametime
@@ -71,7 +71,7 @@ int DronsEngine::Game::run()
 
 int DronsEngine::Game::init()
 {
-	GameLogger::log("Initialization...");
+	GameLogger::log("Initialization...", Logger::Type::INFO, "Game");
 
 	initSettings();
 	initWindow();
@@ -168,7 +168,7 @@ int DronsEngine::Game::handleEvents()
 		//  Resizing game window
 		if (event.type == sf::Event::Resized)
 		{
-			GameLogger::log("Resizing game window...");
+			GameLogger::log("Resizing game window...", Logger::Type::DEBUG, "Game Loop");
 			sf::View gameView(sf::Vector2f(m_gameWindowWidth / 2, m_gameWindowHeight / 2),
 			                  sf::Vector2f(m_gameViewWidth, m_gameViewHeight));
 			gameView.zoom(1 / (mp_gameWindow->getSize().x / (float)m_gameViewWidth));
@@ -212,7 +212,7 @@ int DronsEngine::Game::render(const sf::Time& t_deltaTime)
 
 int DronsEngine::Game::close()
 {
-	GameLogger::log("Exiting...");
+	GameLogger::log("Exiting...", Logger::Type::INFO, "Game Loop");
 	mp_gameWindow->close();
 
 	return 0;
