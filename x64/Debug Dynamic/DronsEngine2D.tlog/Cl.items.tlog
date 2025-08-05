@@ -1,11 +1,11 @@
-E:\Projects\Visual Studio\DRON12261\DronsEngine2D\Source\Game.cpp;E:\Projects\Visual Studio\DRON12261\DronsEngine2D\x64\Debug Dynamic\Game.obj
-E:\Projects\Visual Studio\DRON12261\DronsEngine2D\Source\main.cpp;E:\Projects\Visual Studio\DRON12261\DronsEngine2D\x64\Debug Dynamic\main.obj
-E:\Projects\Visual Studio\DRON12261\DronsEngine2D\Source\Math\Math.cpp;E:\Projects\Visual Studio\DRON12261\DronsEngine2D\x64\Debug Dynamic\Math.obj
-E:\Projects\Visual Studio\DRON12261\DronsEngine2D\Source\Objects\Object.cpp;E:\Projects\Visual Studio\DRON12261\DronsEngine2D\x64\Debug Dynamic\Object.obj
-E:\Projects\Visual Studio\DRON12261\DronsEngine2D\Source\States\SceneState.cpp;E:\Projects\Visual Studio\DRON12261\DronsEngine2D\x64\Debug Dynamic\SceneState.obj
-E:\Projects\Visual Studio\DRON12261\DronsEngine2D\Source\System\ConsoleColor.cpp;E:\Projects\Visual Studio\DRON12261\DronsEngine2D\x64\Debug Dynamic\ConsoleColor.obj
-E:\Projects\Visual Studio\DRON12261\DronsEngine2D\Source\System\GameLogger.cpp;E:\Projects\Visual Studio\DRON12261\DronsEngine2D\x64\Debug Dynamic\GameLogger.obj
-E:\Projects\Visual Studio\DRON12261\DronsEngine2D\Source\System\GameState.cpp;E:\Projects\Visual Studio\DRON12261\DronsEngine2D\x64\Debug Dynamic\GameState.obj
-E:\Projects\Visual Studio\DRON12261\DronsEngine2D\Source\System\Logger.cpp;E:\Projects\Visual Studio\DRON12261\DronsEngine2D\x64\Debug Dynamic\Logger.obj
-E:\Projects\Visual Studio\DRON12261\DronsEngine2D\Source\Utilities\INIFile.cpp;E:\Projects\Visual Studio\DRON12261\DronsEngine2D\x64\Debug Dynamic\INIFile.obj
-E:\Projects\Visual Studio\DRON12261\DronsEngine2D\Source\Utilities\StringUtilities.cpp;E:\Projects\Visual Studio\DRON12261\DronsEngine2D\x64\Debug Dynamic\StringUtilities.obj
+D:\Projects\Visual Studio Projects\DronsEngine2D\Source\Game.cpp;D:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\Game.obj
+D:\Projects\Visual Studio Projects\DronsEngine2D\Source\main.cpp;D:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\main.obj
+D:\Projects\Visual Studio Projects\DronsEngine2D\Source\Math\Math.cpp;D:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\Math.obj
+D:\Projects\Visual Studio Projects\DronsEngine2D\Source\Objects\Object.cpp;D:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\Object.obj
+D:\Projects\Visual Studio Projects\DronsEngine2D\Source\States\SceneState.cpp;D:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\SceneState.obj
+D:\Projects\Visual Studio Projects\DronsEngine2D\Source\System\ConsoleColor.cpp;D:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\ConsoleColor.obj
+D:\Projects\Visual Studio Projects\DronsEngine2D\Source\System\GameLogger.cpp;D:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\GameLogger.obj
+D:\Projects\Visual Studio Projects\DronsEngine2D\Source\System\GameState.cpp;D:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\GameState.obj
+D:\Projects\Visual Studio Projects\DronsEngine2D\Source\System\Logger.cpp;D:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\Logger.obj
+D:\Projects\Visual Studio Projects\DronsEngine2D\Source\Utilities\INIFile.cpp;D:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\INIFile.obj
+D:\Projects\Visual Studio Projects\DronsEngine2D\Source\Utilities\StringUtilities.cpp;D:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\StringUtilities.obj
