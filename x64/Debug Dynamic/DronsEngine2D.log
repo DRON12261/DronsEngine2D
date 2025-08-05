@@ -4,16 +4,7 @@
   Скопировано файлов:         1.
   Скопировано файлов:         1.
   Скопировано файлов:         1.
-  Game.cpp
   main.cpp
-  Math.cpp
-  Object.cpp
   SceneState.cpp
-  ConsoleColor.cpp
-  GameLogger.cpp
-  GameState.cpp
-  Logger.cpp
-  INIFile.cpp
-  StringUtilities.cpp
   Создание кода...
   DronsEngine2D.vcxproj -> D:\Projects\Visual Studio Projects\DronsEngine2D\x64\Debug Dynamic\DronsEngine2D.exe

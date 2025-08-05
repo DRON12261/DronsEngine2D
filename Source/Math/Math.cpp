@@ -7,7 +7,7 @@ float DronsEngine::distance(float t_x0, float t_y0, float t_x1, float t_y1)
 	return std::sqrt(dx * dx + dy * dy);
 }
 
-int DronsEngine::circlesCollide(sf::CircleShape t_shape1, sf::CircleShape t_shape2)
+int DronsEngine::isCirclesCollide(sf::CircleShape t_shape1, sf::CircleShape t_shape2)
 {
 	if (distance(t_shape1.getPosition().x, t_shape1.getPosition().y, t_shape2.getPosition().x, t_shape2.getPosition().y) <
 	    (t_shape1.getRadius() + t_shape2.getRadius()))
@@ -18,9 +18,19 @@ int DronsEngine::circlesCollide(sf::CircleShape t_shape1, sf::CircleShape t_shap
 	return 0;
 }
 
-int DronsEngine::circleAndPointCollide(sf::Vector2f t_point0, sf::CircleShape t_shape0)
+int DronsEngine::isCircleAndPointCollide(sf::Vector2f t_point0, sf::CircleShape t_shape0)
 {
 	if (distance(t_point0.x, t_point0.y, t_shape0.getPosition().x, t_shape0.getPosition().y) < t_shape0.getRadius())
+	{
+		return 1;
+	}
+
+	return 0;
+}
+
+int DronsEngine::isCircleAndPointCollide(sf::Vector2f t_point0, sf::Vector2f t_shape0_position, float t_shape0_radius)
+{
+	if (distance(t_point0.x, t_point0.y, t_shape0_position.x, t_shape0_position.y) < t_shape0_radius)
 	{
 		return 1;
 	}

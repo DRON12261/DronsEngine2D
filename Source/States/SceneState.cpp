@@ -1,6 +1,7 @@
 #include "SceneState.h"
 
-DronsEngine::SceneState::SceneState(sf::RenderWindow* t_gameWindow) : GameState(t_gameWindow) {
+DronsEngine::SceneState::SceneState(sf::RenderWindow* t_gameWindow) : GameState(t_gameWindow)
+{
 	m_shape = new sf::CircleShape(50.f);
 	m_mouseShape = new sf::CircleShape(20.f);
 }
@@ -40,19 +41,25 @@ void DronsEngine::SceneState::physicsUpdate(const sf::Time& t_deltaTime)
 	sf::Vector2i pixelMousePos = sf::Mouse::getPosition(*mp_gameWindow);
 	sf::Vector2f viewMousePos = mp_gameWindow->mapPixelToCoords(pixelMousePos);
 
-	if (circlesCollide(*m_shape, *m_mouseShape))
+	if (isCirclesCollide(*m_shape, *m_mouseShape))
 	{
-		if (circleAndPointCollide(viewMousePos, *m_shape))
-		{
-			m_shape->setFillColor(sf::Color::White);
-			m_mouseShape->setFillColor(sf::Color::Black);
-			GameLogger::log("EVENT 1!", Logger::Type::DEBUG, "Physics Engine");
-		}
-		else
+		if (isCircleAndPointCollide(viewMousePos, m_shape->getPosition(), m_shape->getRadius() - m_mouseShape->getRadius()))
 		{
 			m_shape->setFillColor(sf::Color::Red);
 			m_mouseShape->setFillColor(sf::Color::Magenta);
+			GameLogger::log("EVENT 1!", Logger::Type::DEBUG, "Physics Engine");
+		}
+		else if (isCircleAndPointCollide(viewMousePos, *m_shape))
+		{
+			m_shape->setFillColor(sf::Color::White);
+			m_mouseShape->setFillColor(sf::Color::Black);
 			GameLogger::log("EVENT 2!", Logger::Type::DEBUG, "Physics Engine");
+		}
+		else
+		{
+			m_shape->setFillColor(sf::Color::Cyan);
+			m_mouseShape->setFillColor(sf::Color::Red);
+			GameLogger::log("EVENT 3!", Logger::Type::DEBUG, "Physics Engine");
 		}
 	}
 	else
