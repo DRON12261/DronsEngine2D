@@ -52,7 +52,7 @@ bool DronsEngine::Logger::isOpen() const
 void DronsEngine::Logger::log(std::string t_message, Type t_type, std::string t_scope)
 {
 #ifndef _DEBUG
-	if (t_type == Type::DEBUG)
+	if (t_type == Type::LOG_DEBUG)
 		return;
 #endif
 
@@ -74,27 +74,27 @@ void DronsEngine::Logger::log(std::string t_message, Type t_type, std::string t_
 	std::string loggerPrefix = "";
 	switch (t_type)
 	{
-		case Type::INFO:
+		case Type::LOG_INFO:
 			loggerPrefix = "[INFO ]";
 			loggerConPrefix = ConsoleColor::fg_black + ConsoleColor::bg_light_green + loggerPrefix + ConsoleColor::bg_black +
 			                  ConsoleColor::fg_light_green;
 			break;
-		case Type::DEBUG:
+		case Type::LOG_DEBUG:
 			loggerPrefix = "[DEBUG]";
 			loggerConPrefix = ConsoleColor::fg_black + ConsoleColor::bg_light_blue + loggerPrefix + ConsoleColor::bg_black +
 			                  ConsoleColor::fg_light_blue;
 			break;
-		case Type::WARNING:
+		case Type::LOG_WARNING:
 			loggerPrefix = "[WARN ]";
 			loggerConPrefix = ConsoleColor::fg_black + ConsoleColor::bg_yellow + loggerPrefix + ConsoleColor::bg_black +
 			                  ConsoleColor::fg_light_yellow;
 			break;
-		case Type::ERROR:
+		case Type::LOG_ERROR:
 			loggerPrefix = "[ERROR]";
 			loggerConPrefix = ConsoleColor::fg_black + ConsoleColor::bg_light_red + loggerPrefix + ConsoleColor::bg_black +
 			                  ConsoleColor::fg_light_red;
 			break;
-		case Type::FATAL:
+		case Type::LOG_FATAL:
 			loggerPrefix = "[FATAL]";
 			loggerConPrefix =
 			    ConsoleColor::fg_black + ConsoleColor::bg_red + loggerPrefix + ConsoleColor::bg_black + ConsoleColor::fg_red;

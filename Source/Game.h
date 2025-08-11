@@ -6,10 +6,14 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
+#include <ENet/enet.h>
+
 #include <iostream>
 #include <string>
 #include <cmath>
 #include <stack>
+#include <thread>
+#include <mutex>
 
 #include "Math/Math.h"
 #include "Utilities/INIFile.h"
@@ -28,6 +32,7 @@ namespace DronsEngine {
 		int m_gameViewWidth = 1280;
 		int m_gameViewHeight = 720;
 		int m_gameWindowMode = sf::Style::None;
+
 		int m_FPSCap = 0;
 		int m_physicsFPSCap = 0;
 
@@ -41,24 +46,24 @@ namespace DronsEngine {
 		sf::Time m_msPerIdleFrame;
 		sf::Time m_msPerPhysicsFrame;
 
-		int init();
-		int initSettings();
-		int initWindow();
-		int initStates();
-		int initObjects();
+		void init();
+		void initSettings();
+		void initWindow();
+		void initNetwork();
+		void initStates();
+		void initObjects();
 
-		int handleEvents();
-		int physicsUpdate(const sf::Time& t_deltaTime);
-		int update(const sf::Time& t_deltaTime);
-		int render(const sf::Time& t_deltaTime);
+		void handleEvents();
+		void physicsUpdate(const sf::Time& t_deltaTime);
+		void update(const sf::Time& t_deltaTime);
+		void render(const sf::Time& t_deltaTime);
 
-		int close();
+		void close();
 
 	public:
 		Logger GameLog;
 		Game(std::string t_gameTitle);
 		~Game();
-		int run();
+		void run();
 	};
 }  // namespace DronsEngine
-

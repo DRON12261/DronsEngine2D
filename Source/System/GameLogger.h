@@ -16,7 +16,7 @@ namespace DronsEngine {
 
 	public:
 		static GameLogger& get();
-		static void log(std::string t_message, Logger::Type t_type = Logger::Type::INFO, std::string t_scope = "");
+		static void log(std::string t_message, Logger::Type t_type = Logger::Type::LOG_INFO, std::string t_scope = "");
 
 		GameLogger(const GameLogger&) = delete;
 		void operator=(const GameLogger&) = delete;
