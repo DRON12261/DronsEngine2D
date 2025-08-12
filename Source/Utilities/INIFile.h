@@ -8,6 +8,7 @@
 #include <stdio.h>
 
 #include "StringUtilities.h"
+#include "../System/GameLogger.h"
 
 namespace DronsEngine {
 	class INIFile

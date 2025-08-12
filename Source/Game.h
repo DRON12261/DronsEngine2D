@@ -14,24 +14,30 @@
 #include <stack>
 #include <thread>
 #include <mutex>
+#include <filesystem>
+//#include <exception>
+#include <chrono>
 
 #include "Math/Math.h"
 #include "Utilities/INIFile.h"
+#include "Utilities/VideoUtilities.h"
 #include "System/GameLogger.h"
 #include "System/GameState.h"
 
 #include "States/SceneState.h"
 
 namespace DronsEngine {
+
 	class Game
 	{
 	private:
 		std::string m_gameTitle = "";
-		int m_gameWindowWidth = 0;
-		int m_gameWindowHeight = 0;
-		int m_gameViewWidth = 1280;
-		int m_gameViewHeight = 720;
-		int m_gameWindowMode = sf::Style::None;
+		unsigned int m_gameWindowWidth = 0;
+		unsigned int m_gameWindowHeight = 0;
+		unsigned int m_gameViewWidth = 1280;
+		unsigned int m_gameViewHeight = 720;
+		int m_gameWindowStyle = sf::Style::Default;
+		sf::State m_gameWindowMode = sf::State::Windowed;
 
 		int m_FPSCap = 0;
 		int m_physicsFPSCap = 0;

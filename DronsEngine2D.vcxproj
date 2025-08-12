@@ -181,7 +181,7 @@
       <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>extlibs\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -206,7 +206,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>extlibs\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -217,11 +217,11 @@
       </DelayLoadDLLs>
     </Link>
     <PreBuildEvent>
-      <Command>copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-audio-d-2.dll"  "$(TargetDir)sfml-audio-d-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-graphics-d-2.dll"  "$(TargetDir)sfml-graphics-d-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-network-d-2.dll"  "$(TargetDir)sfml-network-d-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-system-d-2.dll"  "$(TargetDir)sfml-system-d-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-window-d-2.dll"  "$(TargetDir)sfml-window-d-2.dll"
+      <Command>copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-audio-d-3.dll"  "$(TargetDir)sfml-audio-d-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-graphics-d-3.dll"  "$(TargetDir)sfml-graphics-d-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-network-d-3.dll"  "$(TargetDir)sfml-network-d-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-system-d-3.dll"  "$(TargetDir)sfml-system-d-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-window-d-3.dll"  "$(TargetDir)sfml-window-d-3.dll"
 copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir)openal32.dll"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
@@ -238,7 +238,7 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
       <PreprocessorDefinitions>SFML_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>extlibs\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -266,7 +266,7 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>extlibs\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -277,11 +277,11 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
       <AdditionalDependencies>sfml-network.lib;sfml-audio.lib;openal32.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-audio-2.dll"  "$(TargetDir)sfml-audio-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-graphics-2.dll"  "$(TargetDir)sfml-graphics-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-network-2.dll"  "$(TargetDir)sfml-network-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-system-2.dll"  "$(TargetDir)sfml-system-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-window-2.dll"  "$(TargetDir)sfml-window-2.dll"
+      <Command>copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-audio-3.dll"  "$(TargetDir)sfml-audio-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-graphics-3.dll"  "$(TargetDir)sfml-graphics-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-network-3.dll"  "$(TargetDir)sfml-network-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-system-3.dll"  "$(TargetDir)sfml-system-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-window-3.dll"  "$(TargetDir)sfml-window-3.dll"
 copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir)openal32.dll"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
@@ -296,7 +296,7 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
       <PreprocessorDefinitions>SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>extlibs\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -321,20 +321,20 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>extlibs\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>extlibs\lib\$(PlatformTarget)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-network-d.lib;sfml-audio-d.lib;openal32.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;enet64.lib;ws2_32.lib;winmm.lib</AdditionalDependencies>
+      <AdditionalDependencies>sfml-main-d.lib;sfml-network-d.lib;sfml-audio-d.lib;openal32.lib;sfml-graphics-d.lib;sfml-window-d.lib;sfml-system-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;enet64.lib;ws2_32.lib;winmm.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-audio-d-2.dll"  "$(TargetDir)sfml-audio-d-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-graphics-d-2.dll"  "$(TargetDir)sfml-graphics-d-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-network-d-2.dll"  "$(TargetDir)sfml-network-d-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-system-d-2.dll"  "$(TargetDir)sfml-system-d-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-window-d-2.dll"  "$(TargetDir)sfml-window-d-2.dll"
+      <Command>copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-audio-d-3.dll"  "$(TargetDir)sfml-audio-d-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-graphics-d-3.dll"  "$(TargetDir)sfml-graphics-d-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-network-d-3.dll"  "$(TargetDir)sfml-network-d-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-system-d-3.dll"  "$(TargetDir)sfml-system-d-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-window-d-3.dll"  "$(TargetDir)sfml-window-d-3.dll"
 copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir)openal32.dll"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
@@ -351,7 +351,7 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
       <PreprocessorDefinitions>SFML_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>extlibs\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -379,7 +379,7 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>extlibs\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp23</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -390,11 +390,11 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
       <AdditionalDependencies>sfml-network.lib;sfml-audio.lib;openal32.lib;sfml-graphics.lib;sfml-window.lib;sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;enet64.lib;%(AdditionalDependencies);ws2_32.lib;winmm.lib</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
-      <Command>copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-audio-2.dll"  "$(TargetDir)sfml-audio-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-graphics-2.dll"  "$(TargetDir)sfml-graphics-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-network-2.dll"  "$(TargetDir)sfml-network-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-system-2.dll"  "$(TargetDir)sfml-system-2.dll"
-copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-window-2.dll"  "$(TargetDir)sfml-window-2.dll"
+      <Command>copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-audio-3.dll"  "$(TargetDir)sfml-audio-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-graphics-3.dll"  "$(TargetDir)sfml-graphics-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-network-3.dll"  "$(TargetDir)sfml-network-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-system-3.dll"  "$(TargetDir)sfml-system-3.dll"
+copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\sfml-window-3.dll"  "$(TargetDir)sfml-window-3.dll"
 copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir)openal32.dll"</Command>
     </PreBuildEvent>
     <PostBuildEvent>
@@ -622,11 +622,14 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
     <ClInclude Include="Source\Objects\Object.h" />
     <ClInclude Include="Source\States\SceneState.h" />
     <ClInclude Include="Source\System\ConsoleColor.h" />
+    <ClInclude Include="Source\System\FileSystem.h" />
     <ClInclude Include="Source\System\GameLogger.h" />
     <ClInclude Include="Source\System\GameState.h" />
     <ClInclude Include="Source\System\Logger.h" />
+    <ClInclude Include="Source\Utilities\DateTimeUtilities.h" />
     <ClInclude Include="Source\Utilities\INIFile.h" />
     <ClInclude Include="Source\Utilities\StringUtilities.h" />
+    <ClInclude Include="Source\Utilities\VideoUtilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game.cpp" />
@@ -635,11 +638,14 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
     <ClCompile Include="Source\Objects\Object.cpp" />
     <ClCompile Include="Source\States\SceneState.cpp" />
     <ClCompile Include="Source\System\ConsoleColor.cpp" />
+    <ClCompile Include="Source\System\FileSystem.cpp" />
     <ClCompile Include="Source\System\GameLogger.cpp" />
     <ClCompile Include="Source\System\GameState.cpp" />
     <ClCompile Include="Source\System\Logger.cpp" />
+    <ClCompile Include="Source\Utilities\DateTimeUtilities.cpp" />
     <ClCompile Include="Source\Utilities\INIFile.cpp" />
     <ClCompile Include="Source\Utilities\StringUtilities.cpp" />
+    <ClCompile Include="Source\Utilities\VideoUtilities.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

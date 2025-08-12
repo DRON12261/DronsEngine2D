@@ -13,12 +13,12 @@ namespace DronsEngine {
 		GameState(sf::RenderWindow* t_gameWindow);
 
 	public:
-		const bool& isQuit();
+		const bool& isQuit() const;
 
 		virtual void startState() = 0;
 		virtual void endState() = 0;
 
-		virtual void handleEvents(const sf::Event& event) = 0;
+		virtual void handleEvents(const std::optional<sf::Event>& event) = 0;
 		virtual void physicsUpdate(const sf::Time& t_deltaTime) = 0;
 		virtual void update(const sf::Time& t_deltaTime) = 0;
 		virtual void render(const sf::Time& t_deltaTime, sf::RenderWindow* t_target = nullptr) = 0;

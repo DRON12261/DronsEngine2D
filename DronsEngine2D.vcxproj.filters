@@ -680,6 +680,9 @@
     </ClInclude>
     <ClInclude Include="Source\System\ConsoleColor.h" />
     <ClInclude Include="Source\States\SceneState.h" />
+    <ClInclude Include="Source\System\FileSystem.h" />
+    <ClInclude Include="Source\Utilities\DateTimeUtilities.h" />
+    <ClInclude Include="Source\Utilities\VideoUtilities.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game.cpp">
@@ -713,6 +716,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\States\SceneState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\System\FileSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utilities\DateTimeUtilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Utilities\VideoUtilities.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

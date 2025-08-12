@@ -19,7 +19,7 @@ namespace DronsEngine {
 		void startState() override;
 		void endState() override;
 
-		void handleEvents(const sf::Event& event) override;
+		void handleEvents(const std::optional<sf::Event>& event) override;
 		void physicsUpdate(const sf::Time& t_deltaTime) override;
 		void update(const sf::Time& t_deltaTime) override;
 		void render(const sf::Time& t_deltaTime, sf::RenderWindow* t_target = nullptr) override;

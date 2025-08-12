@@ -10,6 +10,18 @@ DronsEngine::INIFile::INIFile(std::string t_path)
 {
 	m_isOpened = false;
 	m_path = "";
+
+	if (t_path.empty())
+	{
+		GameLogger::log("INI file path is empty! INI file - " + t_path, Logger::Type::LOG_FATAL, "INI File");
+		exit(EXIT_FAILURE);
+	}
+
+	if (!isFileExists(t_path))
+	{
+		createINI(t_path);
+		return;
+	}
 	openINI(t_path);
 }
 
@@ -19,16 +31,25 @@ void DronsEngine::INIFile::createINI(std::string t_path)
 {
 	if (m_isOpened)
 	{
-		std::cerr << "INI file is already open!" << std::endl;
-		exit(1);
+		GameLogger::log("INI file is already open! INI file - " + t_path, Logger::Type::LOG_INFO, "INI File");
+		return;
 	}
 
 	m_file.open(t_path);
 	if (m_file.is_open())
 	{
 		m_file.close();
-		std::cerr << "INI file is already exist!" << std::endl;
-		exit(1);
+		GameLogger::log("INI file is already exist! INI file - " + t_path, Logger::Type::LOG_INFO, "INI File");
+		return;
+	}
+
+	if (!isDirectoryExists(t_path))
+	{
+		if (!createDirectoryForFile(t_path))
+		{
+			std::cerr << "Failed to create directory for INI file \"" << t_path << "\"." << std::endl;
+			exit(EXIT_FAILURE);
+		}
 	}
 
 	std::ofstream newINIFile;
@@ -39,8 +60,8 @@ void DronsEngine::INIFile::createINI(std::string t_path)
 
 	if (!m_file.is_open())
 	{
-		std::cerr << "Failed to open INI file!" << std::endl;
-		exit(1);
+		GameLogger::log("Failed to open INI file! INI File - " + t_path, Logger::Type::LOG_FATAL, "INI File");
+		exit(EXIT_FAILURE);
 	}
 
 	m_isOpened = true;
@@ -51,27 +72,29 @@ void DronsEngine::INIFile::openINI(std::string t_path)
 {
 	if (m_isOpened)
 	{
-		std::cerr << "INI file is already open!" << std::endl;
-		exit(1);
+		GameLogger::log("INI file is already open! INI file - " + t_path, Logger::Type::LOG_INFO, "INI File");
+		return;
 	}
 
 	m_file.open(t_path);
 
 	if (!m_file.is_open())
 	{
-		std::cerr << "Failed to open INI file!" << std::endl;
-		exit(1);
+		GameLogger::log("Failed to open INI file! INI file - " + t_path, Logger::Type::LOG_FATAL, "INI File");
+		exit(EXIT_FAILURE);
 	}
 
 	m_isOpened = true;
 	m_path = t_path;
 
 	std::string currentSection = "";
+	int lineNumber = 0;
 
 	while (m_file)
 	{
 		std::string currentLine;
 		std::getline(m_file, currentLine);
+		lineNumber++;
 		trim(currentLine);
 
 		if (currentLine[0] == '[' && currentLine[currentLine.length() - 1] == ']' && currentLine.length() > 2)
@@ -120,8 +143,10 @@ void DronsEngine::INIFile::openINI(std::string t_path)
 
 			if (currentName == "" && currentValue == "")
 			{
-				std::cerr << "The INI file has incorrect text formatting!" << std::endl;
-				exit(1);
+				GameLogger::log("The INI file has incorrect text formatting at line " + std::to_string(lineNumber) +
+				                    "! INI file - " + t_path,
+				                Logger::Type::LOG_ERROR, "INI File");
+				continue;
 			}
 
 			m_data[currentSection].insert(std::make_pair(currentName, currentValue));
@@ -132,6 +157,8 @@ void DronsEngine::INIFile::openINI(std::string t_path)
 void DronsEngine::INIFile::saveINI()
 {
 	m_file.close();
+
+	GameLogger::log("Saving INI file...", Logger::Type::LOG_INFO, "INI File");
 
 	std::ofstream INIFileToWrite;
 	INIFileToWrite.open(m_path, std::ofstream::out | std::ofstream::trunc);
@@ -152,6 +179,8 @@ void DronsEngine::INIFile::saveINI()
 
 	INIFileToWrite.close();
 
+	GameLogger::log("INI file saved successfully!", Logger::Type::LOG_INFO, "INI File");
+
 	m_file.open(m_path);
 }
 
@@ -159,8 +188,8 @@ void DronsEngine::INIFile::closeINI()
 {
 	if (!m_isOpened)
 	{
-		std::cerr << "The INI file has not been opened yet!" << std::endl;
-		exit(1);
+		GameLogger::log("The INI file has not been opened yet!", Logger::Type::LOG_INFO, "INI File");
+		return;
 	}
 
 	m_isOpened = false;
@@ -173,14 +202,15 @@ void DronsEngine::INIFile::addSection(std::string t_section)
 {
 	if (!m_isOpened)
 	{
-		std::cerr << "The INI file has not been opened yet!" << std::endl;
-		exit(1);
+		GameLogger::log("The INI file has not been opened yet!", Logger::Type::LOG_ERROR, "INI File");
+		return;
 	}
 
 	if (m_data.find(t_section) != m_data.end())
 	{
-		std::cerr << "Such a section is already in the INI file!" << std::endl;
-		exit(1);
+		GameLogger::log("Such a section is already in the INI file! Section - " + t_section, Logger::Type::LOG_WARNING,
+		                "INI File");
+		return;
 	}
 
 	m_data.insert(std::make_pair(t_section, iniSection_t()));
@@ -190,14 +220,15 @@ void DronsEngine::INIFile::deleteSection(std::string t_section)
 {
 	if (!m_isOpened)
 	{
-		std::cerr << "The INI file has not been opened yet!" << std::endl;
-		exit(1);
+		GameLogger::log("The INI file has not been opened yet!", Logger::Type::LOG_ERROR, "INI File");
+		return;
 	}
 
 	if (m_data.find(t_section) == m_data.end())
 	{
-		std::cerr << "There is no such section in the INI file!" << std::endl;
-		exit(1);
+		GameLogger::log("There is no such section in the INI file! Section - " + t_section, Logger::Type::LOG_WARNING,
+		                "INI File");
+		return;
 	}
 
 	iniData_t::iterator it = m_data.find(t_section);
@@ -208,14 +239,15 @@ void DronsEngine::INIFile::write(std::string t_section, std::string t_name, std:
 {
 	if (!m_isOpened)
 	{
-		std::cerr << "The INI file has not been opened yet!" << std::endl;
-		exit(1);
+		GameLogger::log("The INI file has not been opened yet!", Logger::Type::LOG_ERROR, "INI File");
+		return;
 	}
 
 	if (m_data.find(t_section) == m_data.end())
 	{
-		std::cerr << "There is no such section in the INI file!" << std::endl;
-		exit(1);
+		GameLogger::log("There is no such section in the INI file! Creating section " + t_section + "...",
+		                Logger::Type::LOG_WARNING, "INI File");
+		addSection(t_section);
 	}
 
 	if (m_data[t_section].find(t_name) != m_data[t_section].end())
@@ -233,20 +265,23 @@ void DronsEngine::INIFile::erase(std::string t_section, std::string t_name)
 {
 	if (!m_isOpened)
 	{
-		std::cerr << "The INI file has not been opened yet!" << std::endl;
-		exit(1);
+		GameLogger::log("The INI file has not been opened yet!", Logger::Type::LOG_ERROR, "INI File");
+		return;
 	}
 
 	if (m_data.find(t_section) == m_data.end())
 	{
-		std::cerr << "There is no such section in the INI file!" << std::endl;
-		exit(1);
+		GameLogger::log("There is no such section in the INI file! Section - " + t_section, Logger::Type::LOG_ERROR,
+		                "INI File");
+		return;
 	}
 
 	if (m_data[t_section].find(t_name) == m_data[t_section].end())
 	{
-		std::cerr << "There is no such entry in the current section of the INI file!" << std::endl;
-		exit(1);
+		GameLogger::log(
+		    "There is no such entry in the current section of the INI file! Section - " + t_section + ", Name - " + t_name,
+		    Logger::Type::LOG_ERROR, "INI File");
+		return;
 	}
 
 	iniSection_t::iterator it = m_data[t_section].find(t_name);
@@ -257,12 +292,19 @@ std::string DronsEngine::INIFile::read(std::string t_section, std::string t_name
 {
 	if (!m_isOpened)
 	{
-		std::cerr << "The INI file has not been opened yet!" << std::endl;
-		exit(1);
+		GameLogger::log("The INI file has not been opened yet!", Logger::Type::LOG_ERROR, "INI File");
+		return "";
 	}
 
 	if (m_data.find(t_section) != m_data.end() && m_data[t_section].find(t_name) != m_data[t_section].end())
+	{
 		return m_data[t_section][t_name];
+	}
 	else
+	{
+		GameLogger::log(
+		    "There is no such entry or section in the current INI file! Section - " + t_section + ", Name - " + t_name,
+		    Logger::Type::LOG_ERROR, "INI File");
 		return "";
+	}
 }

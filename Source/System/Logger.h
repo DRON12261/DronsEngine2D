@@ -6,8 +6,12 @@
 #include <iomanip>
 #include <ctime>
 #include <sstream>
+#include <stacktrace>
+#include <chrono>
 
 #include "ConsoleColor.h"
+#include "FileSystem.h"
+#include "../Utilities/DateTimeUtilities.h"
 
 namespace DronsEngine {
 	class Logger

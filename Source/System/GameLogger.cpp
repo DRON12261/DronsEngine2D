@@ -24,6 +24,6 @@ DronsEngine::GameLogger::GameLogger()
 		oss << std::put_time(&tm, "[%d.%m.%Y]");
 		auto dateStr = oss.str();
 
-		m_logger.open("Logs/log" + dateStr + ".txt");
+		m_logger.open("Logs/log" + dateStr + ".log");
 	}
 }

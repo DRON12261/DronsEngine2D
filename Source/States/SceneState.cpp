@@ -12,11 +12,11 @@ void DronsEngine::SceneState::startState()
 
 	//  Initialization test objects
 	m_shape->setFillColor(sf::Color::Green);
-	m_shape->setOrigin(m_shape->getRadius(), m_shape->getRadius());
-	m_shape->setPosition(mp_gameWindow->getSize().x / static_cast<float>(2),
-	                     mp_gameWindow->getSize().y / static_cast<float>(2));
+	m_shape->setOrigin({m_shape->getRadius(), m_shape->getRadius()});
+	m_shape->setPosition(
+	    {mp_gameWindow->getSize().x / static_cast<float>(2), mp_gameWindow->getSize().y / static_cast<float>(2)});
 	m_mouseShape->setFillColor(sf::Color::Yellow);
-	m_mouseShape->setOrigin(m_mouseShape->getRadius(), m_mouseShape->getRadius());
+	m_mouseShape->setOrigin({m_mouseShape->getRadius(), m_mouseShape->getRadius()});
 }
 
 void DronsEngine::SceneState::endState()
@@ -27,11 +27,14 @@ void DronsEngine::SceneState::endState()
 	delete m_shape;
 }
 
-void DronsEngine::SceneState::handleEvents(const sf::Event& event)
+void DronsEngine::SceneState::handleEvents(const std::optional<sf::Event>& event)
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
+	if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>())
 	{
-		m_isQuit = true;
+		if (keyPressed->scancode == sf::Keyboard::Scancode::Escape)
+		{
+			m_isQuit = true;
+		}
 	}
 }
 
