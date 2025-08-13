@@ -37,7 +37,6 @@ namespace DronsEngine {
 		unsigned int m_gameViewWidth = 1280;
 		unsigned int m_gameViewHeight = 720;
 		int m_gameWindowStyle = sf::Style::Default;
-		sf::State m_gameWindowMode = sf::State::Windowed;
 
 		int m_FPSCap = 0;
 		int m_physicsFPSCap = 0;

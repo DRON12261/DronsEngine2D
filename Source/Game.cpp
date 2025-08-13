@@ -2,8 +2,6 @@
 
 DronsEngine::Game::Game(std::string t_gameTitle)
 {
-	// throw 42;
-
 	GameLogger::log("Launching \"" + t_gameTitle + "\"...", Logger::Type::LOG_INFO, "Core");
 	this->m_gameTitle = t_gameTitle;
 	mp_gameWindow = new sf::RenderWindow();
@@ -101,7 +99,7 @@ void DronsEngine::Game::initSettings()
 	}
 	else
 	{
-		m_gameWindowWidth = sf::VideoMode::getDesktopMode().size.x;
+		m_gameWindowWidth = sf::VideoMode::getDesktopMode().width;
 		INIConfig.write("Video", "Width", std::to_string(m_gameWindowWidth));
 	}
 
@@ -112,7 +110,7 @@ void DronsEngine::Game::initSettings()
 	}
 	else
 	{
-		m_gameWindowHeight = sf::VideoMode::getDesktopMode().size.y;
+		m_gameWindowHeight = sf::VideoMode::getDesktopMode().height;
 		INIConfig.write("Video", "Height", std::to_string(m_gameWindowHeight));
 	}
 
@@ -149,17 +147,6 @@ void DronsEngine::Game::initSettings()
 		INIConfig.write("Video", "Style", std::to_string(m_gameWindowStyle));
 	}
 
-	readedString = INIConfig.read("Video", "Mode");
-	if (readedString != "")
-	{
-		m_gameWindowMode = static_cast<sf::State>(std::stoi(readedString));
-	}
-	else
-	{
-		m_gameWindowMode = sf::State::Windowed;
-		INIConfig.write("Video", "Mode", std::to_string(static_cast<int>(m_gameWindowMode)));
-	}
-
 	INIConfig.saveINI();
 	INIConfig.closeINI();
 
@@ -185,8 +172,8 @@ void DronsEngine::Game::initWindow()
 
 	// Initialization window
 	delete mp_gameWindow;
-	mp_gameWindow = new sf::RenderWindow(sf::VideoMode({m_gameWindowWidth, m_gameWindowHeight}), m_gameTitle,
-	                                     m_gameWindowMode, sf::ContextSettings(0, 0, 1));
+	mp_gameWindow = new sf::RenderWindow(sf::VideoMode(m_gameWindowWidth, m_gameWindowHeight), m_gameTitle,
+	                                     m_gameWindowStyle, sf::ContextSettings(0, 0, 1));
 	mp_gameWindow->setView(gameView);
 
 	GameLogger::log("Window initialized", Logger::Type::LOG_INFO, "Core");
@@ -220,16 +207,18 @@ void DronsEngine::Game::initObjects() {}
 
 void DronsEngine::Game::handleEvents()
 {
-	while (const std::optional<sf::Event> event = mp_gameWindow->pollEvent())
+	sf::Event event;
+
+	while (mp_gameWindow->pollEvent(event))
 	{
 		// Exiting game
-		if (event->is<sf::Event::Closed>())
+		if (event.type == sf::Event::Closed)
 		{
 			close();
 		}
 
 		// Resizing game window
-		if (const auto* resized = event->getIf<sf::Event::Resized>())
+		if (event.type == sf::Event::Resized)
 		{
 			GameLogger::log("Resizing game window...", Logger::Type::LOG_DEBUG, "Game");
 			sf::View gameView(sf::Vector2f(m_gameWindowWidth / 2, m_gameWindowHeight / 2),
