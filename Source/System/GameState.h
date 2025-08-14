@@ -3,7 +3,8 @@
 #include "SFML/System.hpp"
 #include "SFML/Graphics.hpp"
 
-namespace DronsEngine {
+namespace DronsEngine
+{
 	class GameState
 	{
 	protected:

@@ -25,7 +25,8 @@ DronsEngine::INIFile::INIFile(std::string t_path)
 	openINI(t_path);
 }
 
-DronsEngine::INIFile::~INIFile() {}
+DronsEngine::INIFile::~INIFile()
+{}
 
 void DronsEngine::INIFile::createINI(std::string t_path)
 {
@@ -144,8 +145,8 @@ void DronsEngine::INIFile::openINI(std::string t_path)
 			if (currentName == "" && currentValue == "")
 			{
 				GameLogger::log("The INI file has incorrect text formatting at line " + std::to_string(lineNumber) +
-				                    "! INI file - " + t_path,
-				                Logger::Type::LOG_ERROR, "INI File");
+								"! INI file - " + t_path,
+								Logger::Type::LOG_ERROR, "INI File");
 				continue;
 			}
 
@@ -209,7 +210,7 @@ void DronsEngine::INIFile::addSection(std::string t_section)
 	if (m_data.find(t_section) != m_data.end())
 	{
 		GameLogger::log("Such a section is already in the INI file! Section - " + t_section, Logger::Type::LOG_WARNING,
-		                "INI File");
+						"INI File");
 		return;
 	}
 
@@ -227,7 +228,7 @@ void DronsEngine::INIFile::deleteSection(std::string t_section)
 	if (m_data.find(t_section) == m_data.end())
 	{
 		GameLogger::log("There is no such section in the INI file! Section - " + t_section, Logger::Type::LOG_WARNING,
-		                "INI File");
+						"INI File");
 		return;
 	}
 
@@ -246,7 +247,7 @@ void DronsEngine::INIFile::write(std::string t_section, std::string t_name, std:
 	if (m_data.find(t_section) == m_data.end())
 	{
 		GameLogger::log("There is no such section in the INI file! Creating section " + t_section + "...",
-		                Logger::Type::LOG_WARNING, "INI File");
+						Logger::Type::LOG_WARNING, "INI File");
 		addSection(t_section);
 	}
 
@@ -272,15 +273,15 @@ void DronsEngine::INIFile::erase(std::string t_section, std::string t_name)
 	if (m_data.find(t_section) == m_data.end())
 	{
 		GameLogger::log("There is no such section in the INI file! Section - " + t_section, Logger::Type::LOG_ERROR,
-		                "INI File");
+						"INI File");
 		return;
 	}
 
 	if (m_data[t_section].find(t_name) == m_data[t_section].end())
 	{
 		GameLogger::log(
-		    "There is no such entry in the current section of the INI file! Section - " + t_section + ", Name - " + t_name,
-		    Logger::Type::LOG_ERROR, "INI File");
+			"There is no such entry in the current section of the INI file! Section - " + t_section + ", Name - " + t_name,
+			Logger::Type::LOG_ERROR, "INI File");
 		return;
 	}
 
@@ -303,8 +304,8 @@ std::string DronsEngine::INIFile::read(std::string t_section, std::string t_name
 	else
 	{
 		GameLogger::log(
-		    "There is no such entry or section in the current INI file! Section - " + t_section + ", Name - " + t_name,
-		    Logger::Type::LOG_ERROR, "INI File");
+			"There is no such entry or section in the current INI file! Section - " + t_section + ", Name - " + t_name,
+			Logger::Type::LOG_ERROR, "INI File");
 		return "";
 	}
 }

@@ -89,27 +89,27 @@ void DronsEngine::Logger::log(std::string t_message, Type t_type, std::string t_
 		case Type::LOG_INFO:
 			loggerPrefix = dateStr + " " + "[INFO ]";
 			loggerConPrefix = ConsoleColor::fg_black + ConsoleColor::bg_light_green + loggerPrefix + ConsoleColor::bg_black +
-			                  ConsoleColor::fg_light_green;
+				ConsoleColor::fg_light_green;
 			break;
 		case Type::LOG_DEBUG:
 			loggerPrefix = dateStr + " " + "[DEBUG]";
 			loggerConPrefix = ConsoleColor::fg_black + ConsoleColor::bg_light_blue + loggerPrefix + ConsoleColor::bg_black +
-			                  ConsoleColor::fg_light_blue;
+				ConsoleColor::fg_light_blue;
 			break;
 		case Type::LOG_WARNING:
 			loggerPrefix = dateStr + " " + "[WARN ]";
 			loggerConPrefix = ConsoleColor::fg_black + ConsoleColor::bg_yellow + loggerPrefix + ConsoleColor::bg_black +
-			                  ConsoleColor::fg_light_yellow;
+				ConsoleColor::fg_light_yellow;
 			break;
 		case Type::LOG_ERROR:
 			loggerPrefix = dateStr + " " + "[ERROR]";
 			loggerConPrefix = ConsoleColor::fg_black + ConsoleColor::bg_light_red + loggerPrefix + ConsoleColor::bg_black +
-			                  ConsoleColor::fg_light_red;
+				ConsoleColor::fg_light_red;
 			break;
 		case Type::LOG_FATAL:
 			loggerPrefix = dateStr + " " + "[FATAL]";
 			loggerConPrefix =
-			    ConsoleColor::fg_black + ConsoleColor::bg_red + loggerPrefix + ConsoleColor::bg_black + ConsoleColor::fg_red;
+				ConsoleColor::fg_black + ConsoleColor::bg_red + loggerPrefix + ConsoleColor::bg_black + ConsoleColor::fg_red;
 			break;
 	}
 
@@ -124,13 +124,13 @@ void DronsEngine::Logger::log(std::string t_message, Type t_type, std::string t_
 	}
 
 	std::cout << loggerConPrefix + "[" + t_scope + "] " + t_message + ConsoleColor::fg_default + ConsoleColor::bg_default
-	          << std::endl;
+		<< std::endl;
 
 	if (t_type == Type::LOG_ERROR || t_type == Type::LOG_FATAL)
 	{
 		std::cout << ConsoleColor::bg_black +
-		                 (t_type == Type::LOG_ERROR ? ConsoleColor::fg_light_red : ConsoleColor::fg_red) + stackTraceStr +
-		                 ConsoleColor::fg_default + ConsoleColor::bg_default
-		          << std::endl;
+			(t_type == Type::LOG_ERROR ? ConsoleColor::fg_light_red : ConsoleColor::fg_red) + stackTraceStr +
+			ConsoleColor::fg_default + ConsoleColor::bg_default
+			<< std::endl;
 	}
 }

@@ -2,6 +2,7 @@
 
 #include <SFML/Window.hpp>
 
-namespace DronsEngine {
+namespace DronsEngine
+{
 	unsigned int getMonitorRefreshRate();
 }  // namespace DronsEngine

@@ -13,16 +13,18 @@
 #include "FileSystem.h"
 #include "../Utilities/DateTimeUtilities.h"
 
-namespace DronsEngine {
+namespace DronsEngine
+{
 	class Logger
 	{
 	private:
 		bool m_isOpened;
 		std::ofstream m_logStream;
 		std::string m_path;
-		
+
 	public:
-		enum Type {
+		enum Type
+		{
 			LOG_INFO = 0, // Только информация
 			LOG_DEBUG, // Дополнительная информация для отладки
 			LOG_WARNING, // Предупреждение, некритичное для работоспособности

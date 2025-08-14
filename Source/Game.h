@@ -15,7 +15,7 @@
 #include <thread>
 #include <mutex>
 #include <filesystem>
-//#include <exception>
+#include <exception>
 #include <chrono>
 
 #include "Math/Math.h"
@@ -26,7 +26,8 @@
 
 #include "States/SceneState.h"
 
-namespace DronsEngine {
+namespace DronsEngine
+{
 
 	class Game
 	{

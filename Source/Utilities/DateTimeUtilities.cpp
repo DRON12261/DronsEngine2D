@@ -13,7 +13,7 @@ std::string DronsEngine::getFullDateTime(bool t_includeMilliseconds)
 	if (t_includeMilliseconds)
 	{
 		int milliseconds = static_cast<int>(
-		    std::chrono::duration_cast<std::chrono::milliseconds>(currentTimePoint.time_since_epoch()).count() % 1000);
+			std::chrono::duration_cast<std::chrono::milliseconds>(currentTimePoint.time_since_epoch()).count() % 1000);
 
 		dateTimeStream << '.' << std::setw(3) << std::setfill('0') << milliseconds;
 	}

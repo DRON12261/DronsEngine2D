@@ -167,13 +167,13 @@ void DronsEngine::Game::initWindow()
 
 	// Prepare main view
 	sf::View gameView(sf::Vector2f(m_gameWindowWidth / 2, m_gameWindowHeight / 2),
-	                  sf::Vector2f(m_gameViewWidth, m_gameViewHeight));
+					  sf::Vector2f(m_gameViewWidth, m_gameViewHeight));
 	gameView.zoom(1 / (m_gameWindowWidth / (float)m_gameViewWidth));
 
 	// Initialization window
 	delete mp_gameWindow;
 	mp_gameWindow = new sf::RenderWindow(sf::VideoMode(m_gameWindowWidth, m_gameWindowHeight), m_gameTitle,
-	                                     m_gameWindowStyle, sf::ContextSettings(0, 0, 1));
+										 m_gameWindowStyle, sf::ContextSettings(0, 0, 1));
 	mp_gameWindow->setView(gameView);
 
 	GameLogger::log("Window initialized", Logger::Type::LOG_INFO, "Core");
@@ -203,7 +203,8 @@ void DronsEngine::Game::initStates()
 	GameLogger::log("Game states initialized", Logger::Type::LOG_INFO, "Core");
 }
 
-void DronsEngine::Game::initObjects() {}
+void DronsEngine::Game::initObjects()
+{}
 
 void DronsEngine::Game::handleEvents()
 {
@@ -222,7 +223,7 @@ void DronsEngine::Game::handleEvents()
 		{
 			GameLogger::log("Resizing game window...", Logger::Type::LOG_DEBUG, "Game");
 			sf::View gameView(sf::Vector2f(m_gameWindowWidth / 2, m_gameWindowHeight / 2),
-			                  sf::Vector2f(m_gameViewWidth, m_gameViewHeight));
+							  sf::Vector2f(m_gameViewWidth, m_gameViewHeight));
 			gameView.zoom(1 / (mp_gameWindow->getSize().x / (float)m_gameViewWidth));
 			mp_gameWindow->setView(gameView);
 		}

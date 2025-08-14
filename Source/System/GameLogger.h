@@ -7,7 +7,8 @@
 
 #include "Logger.h"
 
-namespace DronsEngine {
+namespace DronsEngine
+{
 	class GameLogger
 	{
 	private:

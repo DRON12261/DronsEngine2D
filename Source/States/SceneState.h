@@ -6,7 +6,8 @@
 #include "../Math/Math.h"
 #include "../System/GameLogger.h"
 
-namespace DronsEngine {
+namespace DronsEngine
+{
 	class SceneState : public GameState
 	{
 	private:

@@ -14,7 +14,7 @@ void DronsEngine::SceneState::startState()
 	m_shape->setFillColor(sf::Color::Green);
 	m_shape->setOrigin(m_shape->getRadius(), m_shape->getRadius());
 	m_shape->setPosition(mp_gameWindow->getSize().x / static_cast<float>(2),
-	                     mp_gameWindow->getSize().y / static_cast<float>(2));
+						 mp_gameWindow->getSize().y / static_cast<float>(2));
 	m_mouseShape->setFillColor(sf::Color::Yellow);
 	m_mouseShape->setOrigin({m_mouseShape->getRadius(), m_mouseShape->getRadius()});
 }

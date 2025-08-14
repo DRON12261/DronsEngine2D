@@ -10,7 +10,7 @@ float DronsEngine::distance(float t_x0, float t_y0, float t_x1, float t_y1)
 int DronsEngine::isCirclesCollide(sf::CircleShape t_shape1, sf::CircleShape t_shape2)
 {
 	if (distance(t_shape1.getPosition().x, t_shape1.getPosition().y, t_shape2.getPosition().x, t_shape2.getPosition().y) <
-	    (t_shape1.getRadius() + t_shape2.getRadius()))
+		(t_shape1.getRadius() + t_shape2.getRadius()))
 	{
 		return 1;
 	}

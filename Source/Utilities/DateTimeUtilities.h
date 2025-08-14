@@ -6,6 +6,7 @@
 #include <iomanip>
 #include <sstream>
 
-namespace DronsEngine {
-    std::string getFullDateTime(bool t_includeMilliseconds = false);
+namespace DronsEngine
+{
+	std::string getFullDateTime(bool t_includeMilliseconds = false);
 }  // namespace DronsEngine

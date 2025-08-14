@@ -6,7 +6,8 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-namespace DronsEngine {
+namespace DronsEngine
+{
 	class Object
 	{
 	public:

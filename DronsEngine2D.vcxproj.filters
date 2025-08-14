@@ -88,7 +88,7 @@
     <None Include="extlibs\lib\x86\sfml-window-s-d.pdb">
       <Filter>Libraries</Filter>
     </None>
-    <None Include=".clang-format" />
+    <None Include=".editorconfig" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Game.h">

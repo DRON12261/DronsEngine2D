@@ -403,7 +403,7 @@ copy /Y "$(SolutionDir)extlibs\bin\$(PlatformTarget)\openal32.dll"  "$(TargetDir
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include=".clang-format" />
+    <None Include=".editorconfig" />
     <None Include="extlibs\lib\x64\sfml-audio-d.pdb" />
     <None Include="extlibs\lib\x64\sfml-audio-s-d.pdb" />
     <None Include="extlibs\lib\x64\sfml-graphics-d.pdb" />
